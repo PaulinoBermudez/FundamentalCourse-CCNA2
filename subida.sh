@@ -2,14 +2,23 @@
 echo " Script de subida a GitHub repositorio: https://github.com/chunche95/FundamentalCourse-CCNA2" 
 echo ""
 sleep 2
+# README
+echo "README"
+git add README.md &&
+git nota "GitHub repositorio: https://github.com/chunche95/FundamentalCourse-CCNA2" &&
+git sube
+echo "Reame -- Terminado"
+# assets
 git add assets/. && 
-git commit -m "Style components" &&
+git commit -m "Other Files" &&
 git sube 
 echo " Archivos de assets  --  Terminado." 
+# Index
 git add index.html &&
 git nota "Index - CCNA2" &&
 git sube 
 echo "Index -- Terminado"
+# Contents
 git add contents/Welcome.html &&
 git nota "Introduction -- CCNA2" && 
 git sube 
@@ -18,12 +27,20 @@ git nota "Introduction -- CCNA2" &&
 git sube 
 git add contents/plantilla.txt && 
 git nota "Introduction -- CCNA2"
+git add contents/images/. &&
+git nota "Introduction -- CCNA2 (Images)" &&
+git sube 
 echo "Archivo(s) contents -- Terminado"
+# Images
 git add images/. && 
 git nota "Media - images" && 
 git sube 
 echo "Archivos Media imagenes -- Terminado"
+# Script
 git add subida.sh && 
 git nota "Script update repository GitHub" && 
 git sube 
 echo "Script de subida de archivos -- Terminado"
+sleep 5
+echo "Script terminado"
+clear
