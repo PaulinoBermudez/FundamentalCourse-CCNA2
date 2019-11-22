@@ -30,6 +30,9 @@ git nota "Introduction -- CCNA2"
 git add contents/images/. &&
 git nota "Introduction -- CCNA2 (Images)" &&
 git sube 
+git add contents/. &&
+git nota "Introduction -- CCNA2 (Images)" &&
+git sube 
 echo "Archivo(s) contents -- Terminado"
 # Images
 git add images/. && 
