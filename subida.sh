@@ -39,6 +39,11 @@ git add images/. &&
 git nota "Media - images" && 
 git sube 
 echo "Archivos Media imagenes -- Terminado"
+# videos
+git add contents/videos/. && 
+git nota "Introduction -- CCNA2 (videos)" &&
+git sube 
+
 # Script
 git add subida.sh && 
 git nota "Script update repository GitHub" && 
