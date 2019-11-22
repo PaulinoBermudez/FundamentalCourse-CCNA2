@@ -63,7 +63,8 @@
 
 							Como se muestra en la ilustración, existen muchas características clave relacionadas con las estructuras y el rendimiento a las cuales nos referimos cuando hablamos de redes:
 							<ul>
-								<li> <strong> Topología: </strong> existen topologías físicas y lógicas. La topología física es la disposición de los cables, los dispositivos de red y los sistemas finales. Esta describe la forma en que los dispositivos de red se interconectan con los hilos y cables. La topología lógica es la ruta por la cual se transfieren los datos en una red. Describe cómo aparecen conectados los dispositivos de red a los usuarios de la red.</li>
+								<li> <strong> Topología: </strong> existen topologías físicas y lógicas. La topología física es la disposición de los cables, los dispositivos de red y los sistemas finales. Esta describe la forma en que los dispositivos de red se interconectan con los hilos y cables. La topología lógica es la ruta por la cual se transfieren los datos en una red. 
+									Describe cómo aparecen conectados los dispositivos de red a los usuarios de la red.</li>
 								<li> <strong> Velocidad: </strong> la velocidad mide la velocidad de datos de un enlace dado en la red en bits por segundo (b/s).</li>
 								<li> <strong> Costo: </strong> el costo indica el gasto general de la adquisición de componentes de red, así como de la instalación y el mantenimiento de la red.</li>
 								<li> <strong> Seguridad: </strong> la seguridad indica el nivel de protección de la red, incluida la información que se transmite a través de esta. El tema de la seguridad es importante, y las técnicas y las prácticas están en constante evolución. Siempre tenga en cuenta la seguridad cuando se tomen medidas que afecten la red.</li>
@@ -74,6 +75,49 @@
 							<img src="images/caracteristicasdeunared.PNG" alt=""> <br>
 							Estas características y atributos proporcionan un medio para comparar distintas soluciones de redes.
 							Nota: si bien el término “velocidad” se utiliza comúnmente para referirse al ancho de banda de red, no es del todo preciso. La velocidad propiamente dicha a la que se transmiten los bits no varía en el mismo medio. La diferencia en el ancho de banda se debe a la cantidad de bits transmitidos por segundo, no a la velocidad a la que se trasladan a través del medio cableado o inalámbrico.
+						</p>
+						<h2>¿Por qué es necesario el routing?</h2>
+						<p>
+							¿Cómo es que se logra acceder a la información deseada en pocos segundos haciendo clic en un enlace en un navegador web? Si bien existen muchos dispositivos y tecnologías que trabajan juntos de forma colaborativa para lograr esto, el dispositivo principal es el router. En pocas palabras, un router conecta una red con otra red.
+							La comunicación entre redes no sería posible sin un router que determine la mejor ruta hacia el destino y que reenvíe el tráfico al router siguiente en esa ruta. El router es responsable del routing del tráfico entre redes.
+							En la topología de la figura, los routers interconectan las redes en los diferentes sitios. Cuando un paquete llega a una interfaz del router, este utiliza la tabla de routing para determinar cómo llegar a la red de destino. El destino de un paquete IP puede ser un servidor web en otro país o un servidor de correo electrónico en la red de área local. 
+							Es responsabilidad de los routers entregar esos paquetes de forma eficaz. La efectividad de las comunicaciones de internetwork depende, en gran medida, de la capacidad de los routers de reenviar paquetes de la manera más eficiente posible. <br>
+							<br>
+							<img src="images/routing1.PNG" alt="">
+						</p>
+						<h2>Los router son computadoras.</h2>
+						<p>
+						Para que la mayoría de los dispositivos con capacidad de red funcionen (por ejemplo, las computadoras, las tabletas y los smartphones), estos requieren los siguientes componentes, como se muestra en la Figura 1:
+						<ul>
+							<li> Unidad central de procesamiento (CPU) </li>
+							<li> Sistema operativo (OS) </li>
+							<li> Memoria y almacenamiento (RAM, ROM, NVRAM, flash, disco duro) </li>
+						</ul>
+						Básicamente, los routers son computadoras especializadas. Estos requieren una CPU y una memoria para almacenar datos de forma temporal y permanente a fin de ejecutar las instrucciones del sistema operativo, como la inicialización del sistema, las funciones de routing y de switching.
+						Nota: los dispositivos de Cisco utilizan el sistema operativo Internetwork (IOS) de Cisco como software de sistema.
+						La memoria del router se clasifica como volátil o no volátil. La memoria volátil pierde su contenido cuando se apaga el dispositivo, mientras que la memoria no volátil no pierde su contenido cuando se apaga el dispositivo.
+						En la tabla de la figura 2, se resumen los tipos de memoria de router, la volatilidad, y se proporcionan ejemplos de lo que se almacena en cada una.
+						A diferencia de las computadoras, los routers no tienen adaptadores de video o de tarjeta de sonido. En cambio, los routers cuentan con tarjetas de interfaz de red y puertos especializados para interconectar los dispositivos a otras redes. En la figura 3, se identifican algunos de estos puertos e interfaces.
+							<div>
+								<img src="images/componentes de un dispositivo con capacidad de red 1.PNG" alt=""> <br>
+								<img src="images/memoria del router.PNG" alt=""> <br>
+								<img src="images/panel trasero del router.PNG" alt=""> 
+							</div>
+						</p>
+						<h2>Los router interconectan redes.</h2>
+						<p>
+							La mayoría de los usuarios desconocen la presencia de varios routers en su propia red o en Internet. Los usuarios esperan poder acceder a páginas web, enviar correo electrónico y descargar música, sin importar si el servidor al que acceden está en su propia red o en otra. Los profesionales de redes saben que 
+							es el router el que se encarga del reenvío de paquetes de una red a otra, desde el origen inicial hasta el destino final. <br>
+							Un router conecta varias redes, lo que significa que posee varias interfaces, cada una de las cuales pertenece una red IP diferente. Cuando un router recibe un paquete IP en una interfaz, determina qué interfaz debe usar para reenviar el paquete hacia el destino. La interfaz que usa el router para reenviar el 
+							paquete puede ser el destino final o una red conectada a otro router que se usa para llegar a la red de destino. <br>
+							En la animación de la figura 1, se observa que el R1 y el R2 son responsables de recibir el paquete en una red y reenviarlo desde otra red hacia la red de destino.
+							Generalmente, cada red a la que se conecta un router requiere una interfaz separada. Estas interfaces se usan para conectar una combinación de redes de área local (LAN) y redes de área extensa (WAN). Por lo general, las LAN son redes Ethernet que contienen dispositivos como computadoras, impresoras y servidores. 
+							Las WAN se usan para conectar redes a través de un área geográfica extensa. Por ejemplo, las conexiones WAN suelen utilizarse para conectar una LAN a la red del proveedor de servicios de Internet (ISP). <br>
+							Observe que cada sitio de la figura 2 requiere el uso de un router para interconectarse a otros sitios. Incluso la oficina doméstica requiere un router. En esta topología, el router ubicado en la oficina doméstica es un dispositivo especializado que lleva a cabo varios servicios para la red doméstica. <br>
+							<div>
+								<video src="videos/Principios básicos de routing y switching - Mozilla Firefox 2019-11-22 12-23-25.mp4" autoplay></video> <br>
+								<img src="images/los router interconectan redes.PNG" alt="">
+							</div>
 						</p>
 					</section>
 
