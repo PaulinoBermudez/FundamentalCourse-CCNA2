@@ -119,6 +119,126 @@
 								<img src="images/los router interconectan redes.PNG" alt="">
 							</div>
 						</p>
+						<h2>Mecanismos de reenvio de paquetes.</h2>
+						<p>
+							Los routers admiten tres mecanismos de reenvío de pquetes:
+							<ul>
+								<li>
+									Switching de procesos: es un mecanismo de reenvío de paquetes más antiguo que todavía está disponible para los routers Cisco. Cuando un paquete llega a una interfaz, se reenvía al plano de control, donde la CPU hace coincidir la dirección de destino con una entrada de la tabla de routing y, a continuación, 
+									determina la interfaz de salida y reenvía el paquete. Es importante comprender que el router hace esto con cada paquete, incluso si el destino es el mismo para un flujo de paquetes. Este mecanismo de switching de procesos es muy lento y rara vez se implementa en las redes modernas.
+								</li>
+								<li>
+									Switching rápido: este es un mecanismo frecuente de reenvío de paquetes que usa una memoria caché de switching rápido para almacenar la información de siguiente salto. Cuando un paquete llega a una interfaz, se reenvía al plano de control, donde la CPU busca una coincidencia en la caché de switching rápido. 
+									Si no encuentra ninguna, se aplica el switching de procesos al paquete, y este se reenvía a la interfaz de salida. La información de flujo del paquete también se almacena en la caché de switching rápido. Si otro paquete con el mismo destino llega a una interfaz, se vuelve a utilizar la información de siguiente 
+									salto de la caché sin intervención de la CPU. 
+								</li>
+								<li>
+									Cisco Express Forwarding (CEF): CEF es el mecanismo de reenvío de paquetes más reciente y más utilizado del IOS de Cisco. Al igual que el switching rápido, CEF arma una base de información de reenvío (FIB) y una tabla de adyacencia. Sin embargo, las entradas de la tabla no se activan por los paquetes como 
+									en el switching rápido, sino que se activan por los cambios, como cuando se modifica un elemento en la topología de la red. Por lo tanto, cuando se converge una red, la FIB y las tablas de adyacencia contienen toda la información que el router debe tener en cuenta al reenviar un paquete. La FIB contiene búsquedas 
+									inversas calculadas previamente, información de siguiente salto para las rutas, incluida la información de interfaz y de capa 2. Cisco Express Forwarding es el mecanismo de reenvío más rápido y la opción más utilizada en los routers Cisco. 
+								</li>
+							</ul>
+							En las figuras 1 a 3, se muestran las diferencias entre los tres mecanismos de reenvío de paquetes. Suponga que hay un flujo de tráfico que consta de cinco paquetes que van hacia el mismo destino. Como se muestra en la figura 1, con el switching de procesos, la CPU debe procesar cada paquete en forma individual. Compare esto 
+							con el switching rápido, el cual se muestra en la figura 2. Con el switching rápido, observe que el switching de procesos se aplica solo al primer paquete de un flujo, el cual se agrega a la caché de switching rápido. Los cuatro paquetes siguientes se procesan rápidamente según la información de la caché de switching rápido. 
+							Por último, en la figura 3, se observa que CEF crea la FIB y las tablas de adyacencia una vez que se converge la red. Los cinco paquetes se procesan rápidamente en el plano de datos.
+							Una analogía frecuente que se usa para describir los tres mecanismos de reenvío de paquetes es la siguiente:
+							<ul>
+								<li>
+									El switching de procesos resuelve un problema realizando todos los cálculos matemáticos, incluso si los problemas son idénticos. 
+								</li>
+								<li>
+									El switching rápido resuelve un problema realizando todos los cálculos matemáticos una vez y recuerda la respuesta para los problemas posteriores idénticos.
+								</li>
+								<li>
+									CEF soluciona todos los problemas posibles antes de tiempo en una hoja de cálculo.
+								</li>
+							</ul>
+							<div>
+								<img src="images/switching de procesos.PNG" alt="">
+								<img src="images/switching rapido.PNG" alt="">
+								<img src="images/Cisco Express Forwarding.PNG" alt="">
+							</div>
+						</p>
+						<h2>Actividad (Parte 1): Identificar los tipos de memoria del router.</h2>
+						<p>
+							<img src="images/Actividades/Identificar los tipos de memoria del router.PNG" alt="">
+						</p>
+						<h2>Actividad (parte 2): Identificar componentes del router.</h2>
+						<p>
+							<img src="images/Actividades/componentes de un router.PNG" alt="">
+						</p>
+						<h2>Packet Tracer: Uso de traceroute para detectar la red.</h2>
+						<p>
+							<a href="Documents/1.1.1.8 Packet Tracer - Using Traceroute to Discover the Network instructions.pdf" target="_blank" rel="noopener noreferrer">PT: Uso de traceroute para detectar la red (Instrucciones)</a>
+							<br>
+							<a href="Documents/1.1.1.8 Packet Tracer - Using Traceroute to Discover the Network.pka" target="_blank" rel="noopener noreferrer">PT: Uso de traceroute para detectar la red (PKA)</a>
+						</p>
+						<h2>Práctica de laboratorio: Realización de un esquema de Internet.</h2>
+						<p>
+							<a href="Documents/1.1.1.9 Lab - Mapping the Internet.pdf" target="_blank" rel="noopener noreferrer">Realización de un esquema de Internet.</a>
+						</p>
+						<h2>Conexión a una red.</h2>
+						<p>
+							Por lo general, los dispositivos de red y los usuarios finales se conectan a una red mediante una conexión Ethernet por cable o una conexión inalámbrica. Consulte la ilustración para ver un ejemplo de topología de referencia. 
+							Las LAN que se muestran en la ilustración sirven como ejemplo de cómo los usuarios y los dispositivos de red pueden conectarse a las redes. <br>
+							Los dispositivos de la oficina doméstica pueden conectarse de la siguiente manera:
+							<ul>
+								<li>Las computadoras portátiles y las tablet PC se conectan de forma inalámbrica a un router doméstico.</li>
+								<li>Una impresora de red se conecta mediante un cable Ethernet al puerto de switch en el router doméstico.</li>
+								<li>El router doméstico se conecta al cable módem del proveedor de servicios mediante un cable Ethernet.</li>
+								<li>El cable módem se conecta a la red del proveedor de servicios de Internet (ISP)</li>
+							</ul>
+							Los dispositivos de Sucursal se conectan de la siguiente manera: 
+							<ul>
+								<li>Los recursos corporativos (es decir, los servidores de archivos y las impresoras) se conectan a los switches de capa 2 mediante cables Ethernet.</li>
+								<li>Las computadoras de escritorio y los teléfonos de voz sobre IP (VoIP) se conectan a los switches de capa2 mediante cables Ethernet.</li>
+								<li>Las computadoras portátiles y los smartphones se conectan de forma inalámbrica a los puntos de acceso inalámbrico. (WAP)</li>
+								<li>Los WAP se conectan a los switches mediante cables Ethernet.</li>
+								<li>Los switches de capa 2 se conectan a una interfaz Ethernet en el router perimetral mediante cables Ethernet. Un router perimetral es un dispositivo que se encuentra en el perímetro o el límite de una red y crea rutas entre esa red y otra red, 
+									por ejemplo, entra una LAN y una WAN.
+								</li>
+								<li>El router perimetral se conecta al proveedor de servicios (SP) de una WAN.</li>
+								<li>El router perimetral también se conecta a un ISP para propósitos de respaldo</li>
+							</ul>
+							Los dispositivos del sitio Central se conectan de la siguiente manera: 
+							<ul>
+								<li>Las computadoras de escritorio y los teléfonosVoIP se conectan a los switches de capa 2 mediante cables Ethernet.</li>
+								<li>Los switches de capa 2 se conectan de forma redundante a los switches multicapa de capa 3 con cables Ethernet de fibra óptica (conexiones anaranjadas).</li>
+								<li>Los switches multicapa de capa 3 se conectan a una interfaz Ethernet en el router perimetral mediante cables Ethernet.</li>
+								<li>El servidor del sitio web corporativo se conecta a la interfaz del router perimetral mediante un cable Ethernet.</li>
+								<li>El router perimetral se conecta al SP de una WAN.</li>
+								<li>El router perimetral también se conecta a una ISP para propósitos de respaldo.</li>
+							</ul> <br>
+							<img src="images/ejemplo de conexiones LAN y WAN.PNG" alt=""> <br>
+							En las LAN de los sitios Sucrusal y Central, los hosts se conectan a la infraestructura de red de forma directa o indirecta (a través de WAP) mediante un switch de capa 2. 
+						</p>
+						<h2>Gateway predeterminados.</h2>
+						<p>
+							Para habilitar el acceso a la red, se deben configurar los dispositivos con la información de dirección IP para identificar los elementos correspondientes, entre ellos:
+							<ul>
+								<li>
+									<strong>Dirección IP:</strong> Identifica un host único en una red local.
+								</li>
+								<li>
+									<strong>Máscara de subred:</strong> Identifica con qué subred de la red se puede comunicar el host
+								</li>
+								<li>
+									<strong>Gateway predeterminado:</strong> Identifica la dirección IP del router al que se debe enviar un paquete cuando el destino no estña en la misma subred de la red local. 
+								</li>
+							</ul>
+							Cuando un host envía un pquete a un dispositivo que estña en la misma red IP, el paquete tan solo se reenvía por la interfaz del host al dispositivo de destino.  <br>
+							Cuando un host envía un paquete a un dispositivo en una red IP diferente, el paquete se reenvía al gateway predeterminado, ya que los dispositivos host no pueden comunicarse directamente con los 
+							dispositivos que están fuera de la red local. El gateway predeterminado es el destino que enruta el tráfico desde la red local hacia los dispositivos en las redes remotas. Con frecuencia, se utiliza para conectar una 
+							red local a Internet. <br>
+							Por lo general, el gateway predeterminado es la dirección de la interfaz en el router que se conecta a la red local. El router mantiene entradas de la tabla de routing de todas las redes conectadas, así 
+							como entradas de redes remotas, y determina la mejor ruta para llegar a esos destinos. <br>
+							Por ejemplo, si la PC1 envía un paquete al Web Server (Servidor Web) ubicado en 176.16.1.99  descubrirá que este no está en la red local y, por lo tanto, debe enviar el paquete a la dirección de control de 
+							acceso a los medios (MAC) de su gateway predeterminado. La unidad de datos del protocolo (PDU) del paquete que se muestra en la ilustración identifica las direcciones MAC e IP de origen y destino. 
+							<br>
+							<cite>
+								<strong>Nota:</strong> Los routers también se suelen configurar con su propio gateway predeterminado. Este se conoce como "gateway de último recurso".
+							</cite>
+						</p>
 					</section>
 
 				</div>
