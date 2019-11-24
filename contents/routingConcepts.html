@@ -291,7 +291,75 @@
 								<img src="images/indicadores LED de Cisco 1941.PNG" alt="">
 							</div>
 						</p>
-						
+						<h2>Acceso a la consola.</h2>
+						<p>
+							En un entorno de producción, generalmente se accede a los dispositivos de infraestructura de manera remota mediante shell seguro (SSH) o el protocolo de transferencia de hipertexto seguro (HTTPS). El acceso a la consola solo es realmente necesario para realizar la configuración inicial de un 
+							dispositivo o si el acceso remoto falla. <br>
+							El acceso a la consolna requiere lo siguiente:
+							<ul>
+								<li>
+									Cable de consola: cable serial RJ-45 a DB-9 o cable serial USB.
+								</li>
+								<li>
+									Software de emulación de terminal: Tera Term, PuTTY, HyperTerminal.
+								</li>
+							</ul>
+							El cable se conecta entre el puerto serie del host y el puerto de consola en el dispositivo. La mayoria de las computadoras portátiles y de escritorio ya no cuentan con puertos serie incorporados. Si el host no tiene ningún puerto serie, se puede utilizar el puerto USB para establecer 
+							una conexión de consola. Si el host no tiene ningún puerto serie, se puede utiliZar el puerto USB para establecer una conexión de consola. Cuando se usa el puerto USB, se requiere un adaptador especial de puerto serie compatible USB a RS-232. <br>
+							El ISR Cisco G2 admite una conexión serie de consola USB. Para establecer la conectividad, se requiere un USB de tipo A a tipo B (USB mini B), así como un controlador de dispositivo del sistema operativo. Este controlador de dispositivo se puede descargar en 
+							<a href="https://www.cisco.com" target="_blank" rel="noopener noreferrer"> www.cisco.com</a> . Si bien estos routers tienen dos puertos de consola, los puertos solo se pueden usar de a uno por vez. Cuando se conecta un cable al puerto de consola USB, el puerto RJ-45 quede inactivo. Cuando se quita 
+							el cable USB del puerto USB, el puerto RJ-45 se activa. <br>
+							En la tabla de la figura 1, se resumen los requisitos para las conexiones de consola. En la figura 2, se muestran los distintos puertos y cables que se requieren. <br>
+							<img src="images/requisitos para las conexiones de consola.PNG" alt=""> <br>
+							<img src="images/puertos y cables.PNG" alt="">
+						</p>
+						<h2>Habilitación de IP en un switch</h2>
+						<p>
+							Los dispositivos de infraestructura de red requieren direcciones IP para habilitar la administración remota. Con la dirección IP del dispositivo, el administrador de red puede conectarse al dispositivo de forma remota mediante Telnet, SSH, HTTP o HTTPS.
+							Los switches no tienen una interfaz dedicada a la que se pueda asignar una dirección IP. En cambio, la información de dirección IP se configura en una interfaz virtual denominada “interfaz virtual conmutada” (SVI).	
+							Por ejemplo, en la figura 1, se asigna la dirección IP 192.168.10.2/24 y un gateway predeterminado de 192.168.10.1 a la SVI del switch de capa 2 S1.	
+							Utilice el verificador de sintaxis de la figura 2 para configurar el switch de capa 2 S2. 
+							<div>
+								<img src="images/configurar la interfaz de administracion de switches.PNG" alt=""> <br>
+								<cite>Configurar la interfaz de administracion de switches.</cite> <br>
+								<img src="images/configure la interfax VLAN1 en S2 con la degunda direccion disponible en la red. Asegurese de activar la interfaz.PNG" alt=""> <br>
+								<cite>Configuración de la SVI de administración en S2.</cite>
+							</div>
+						</p>
+						<h2>Actividad: Registrar un esquema de direccionamiento.</h2>
+						<p>
+							<img src="images/Actividades/registrar un esquema de direccionamiento.PNG" alt="">
+						</p>
+						<h2>Packet Tracer: registro de la red.</h2>
+						<p>
+							<a href="Documents/1.1.2.9 Packet Tracer - Documenting the Network Instructions.pdf" target="_blank" rel="noopener noreferrer">PT: Registro de la red(Instrucciones)</a>
+							<br>
+							<a href="Documents/1.1.2.9 Packet Tracer - Documenting the Network.pka" target="_blank" rel="noopener noreferrer">PT: Registro de la red(PKA)</a>
+						</p>
+						<h2>Configuración de parámetros básicos del router.</h2>
+						<p>
+							Los router y switches Cisco tienen muchas similitudes. Admiten sistemas operativos modales y estructuras de comandos similares,así como muchos de los mismos comandos. Además, los pasos de configuración inicial son similares para ambos dispositivos.
+							Por ejemplo, las siguientes tareas de configuración se deben realizar en todo momento: 
+							<ul>
+								<li>Asignar un nombre al dispositivo: (Fig.1) para distinguirlo de otros routers.</li>
+								<li>Asegurar acceso de administración: (Fig.2) asegura EXEC privilegiado, EXEC de usuario y acceso remoto.</li>
+								<li>Configurar un aviso: (Fig.3) para porporcionar notificaciones legales de acceso no autorizado.</li>
+							</ul>
+							Guarde siempre los cambios en un router como se muestra en la Figura 4 y verifique la configuración básica y las operaciones del router. <br>
+							Utilice el verificador de sintaxis de la figura 5 para configurar el router R2.
+							<div>
+								<img src="images/asignar un nombre al dispositivo.PNG" alt="">
+								<img src="images/proteger el acceso administrativo.PNG" alt="">
+								<img src="images/configurar un aviso.PNG" alt="">
+								<img src="images/guardar configuracion.PNG" alt="">
+								<img src="images/configurar los parametros basicos en R2.1.PNG" alt="">
+								<img src="images/configurar los parametros basicos en R2.2.PNG" alt="">
+							</div>
+						</p>
+						<h2>Configuración de una interfaz de router IPv4</h2>
+						<p>
+							1.1.3.2
+						</p>
 					</section>
 
 				</div>
