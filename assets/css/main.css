@@ -2359,7 +2359,7 @@ input, select, textarea {
 			}
 
 		ul.actions:last-child {
-			margin-bottom: 0;
+			margin-bottom: 20px;
 		}
 
 		@media screen and (max-width: 736px) {
