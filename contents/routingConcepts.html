@@ -239,6 +239,59 @@
 								<strong>Nota:</strong> Los routers también se suelen configurar con su propio gateway predeterminado. Este se conoce como "gateway de último recurso".
 							</cite>
 						</p>
+						<h2>Registro del direccionamiento de red.</h2>
+						<p>
+							Cuando se diseña una nueva red o se hacen asignaciones en una red existente, es necesario documentar la red. Como mínimo, el registro debe identificar lo siguiente:
+							<ul>
+								<li>Nombres de los dispositivos</li>
+								<li>Interfaces usadas en el diseño</li>
+								<li>Direcciones IP y máscaras de subred</li>
+								<li>Direcciones de gateway predeterminado</li>
+							</ul>
+							Como se muestra en la ilustración, esta información se captura mediante la creación de dos registros útiles de la red:
+							<ul>
+								<li><strong>Diagrama de topología:</strong>Proporciona una referencia visual que indica la conectividad física y el direccionamiento lógico de capa 3. A menudo se crea mediante software, por ejemplo, Microsoft Visio.</li>
+								<li><strong>Tabla de direccionamiento:</strong>Es una tabla que captura nombres de dispositivos, interfaces, direcciones IPv4, máscaras de subred y direcciones de gateway predeterminado.</li>
+							</ul>
+							<img src="images/registro de direccionamiento de red.PNG" alt="">
+						</p>
+						<h2>Habilitación de IP en un host</h2>
+						<p>
+							Se puede asignar información de dirección IP a un host de dos formas:
+							<ul>
+								<li>
+									<b>Estática:</b> se asigna la dirección IP, la máscara de subred y el gateway predeterminado correctos al host de forma manual. También se puede configurar la dirección IP del servidor DNS.
+								</li>
+								<li>
+									<b>Dinámica:</b> un servidor proporciona la información de dirección IP  mediante el protocolo de configuración dinámica de host (DHCP). El servidor de DHCP proporciona una dirección IP, una máscara de subred y un gateway predeterminado válido para las
+									terminales. El servidor también puede proporcionar otra información.
+								</li>
+							</ul>
+							En la figura 1 y 2, se proporcionan ejemplos de configuración estática y dinámica de direccionamiento IPv4. <br>
+							Por lo general, las direcciones asignadas estáticamente se usan para identiicar recursos de red específicos, como servidores e impresoras de red. También se pueden usar en redes más pequeñas con pocos hosts. Sin embargo, la mayoría de los dispositivos host adquieren 
+							su información de dirección IPv4 accediendo a un servidor DHCPv4. En las empresas grandes, se implementan servidores DHCPv4 dedicados que proporcionan servicios a muchas LAN. En un entorno más pequeño de sucursal u oficina pequeña, un switch Cisco Catalyst o un ISR Cisco 
+							pueden proporcionar los servicios de DHCPv4.
+							<div>
+								<img src="images/asignacion estatica de una direccion IP.PNG" alt=""> <br>
+								<img src="images/asignacion dinamica de una direccion IP.PNG" alt="">
+							</div>
+						</p>
+						<h2>LED de dispositivos</h2>
+						<p>
+							Los equipos host se conectan a una red conectada por cable mediante una interfaz de red y un cable Ethernet RJ-45. La mayoría de las interfaces de red tienen uno o dos indicadores LED de enlace junto a la interfaz. Generalmente, un LED verde indica una conexión correcta, 
+							mientras que un LED verde que parpadea indica actividad de red. <br>
+							Si la luz de elnace no está encendida,  puede existir un problema con el cable de red o con la red propiamente dicha. En el puerto de switch donde  termina la conexión también hay un indicador LED encendido. Si un extremo no se enciende o ninguno lo hace, intente con otro 
+							cable de red. <br>
+							<strong>Nota</strong> La función de los LED varía entre los fabricantes de computadoras. <br>
+							De manera similar, los dispositivos de infraestructura de red suelen utilizar varios indicadores LED para proporcionar una vista rápida del estado. Por ejemplo, un switch Cisco Catalyst 2960 tiene varios LED de estado para ayudar a controlar la actividad y el rendimiento del sistema. 
+							En general, estos LED están encendidos de color verde cuando el switch funciona normalmente y de color ámbar cuando funciona mal. <br>
+							Los ISR Cisco utilizan indicadores LED para proporcionar la información de estado. En la ilustración, se muestra un router Cisco 1941. Los LED del router ayudan al administrador de red a realizar un proceso básico de resolución  de problemas. Cada dispositivo tiene un conjunto  único de LED. 
+							Consulte la documentación específica de los dispositivos para obtener una descripción precisa de los LED.
+							<div>
+								<img src="images/indicadores LED de Cisco 1941.PNG" alt="">
+							</div>
+						</p>
+						
 					</section>
 
 				</div>
