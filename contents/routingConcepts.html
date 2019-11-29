@@ -358,7 +358,188 @@
 						</p>
 						<h2>Configuración de una interfaz de router IPv4</h2>
 						<p>
-							1.1.3.2
+							Una característica que ditingue a los switches de los routers es el tipo de interfaces que admiten cada uno. Por ejemplo, los switches de capa 2 admiten redes LAN y, por lo tanto, tienen varios puertos FastEthernet o Gigabit Ethernet. <br>
+							Lor routers admiten redes LAN y WAN, y pueden interconectar distintos tipos de redes, por lo tanto, admiten muchos tipos de interfaces. Por ejemplo, los ISR G2 tienen una o dos interfaces Gigabit Ethernet integradas y ranuras para tarjetas de interfaz 
+							WAN de alta velocidad (HWIC) para admitir otros tipos de interfaces de red, incluidas las interafces seriales, DSL y de cable. <br>
+							Para que una interfaz esté disponible, debe cumplir los siguientes requisitos. 
+							<ul>
+								<li>
+									<strong>Estar configurada con una dirección IP y una máscara de subred:</strong>Utilice el comando dirección IP <code>ip-address subnet-mask</code> para la configuración de interfaz 
+								</li>
+								<li>
+									<strong>Activar la interfaz:</strong> las interfaces LAN y WAN no están activadas (<code>shutdown</code>) de manera predeterminada. Para habilitar una interfaz, esta se debe activar mediante el comando <code>no shutdown.</code>
+									(Es como encender la interfaz). La interfaz también debe estar conectada a otro dispositivo (un hub, un switch u otro router) para que la capa física se active. 
+								</li>
+							</ul>
+							Opcionalmente, la interfaz también se puede configurar con una descripción breve de hasta 240 caracteres. Es aconsejable configurar una descripción  en cada interfaz. En las redes de producción, se obtienen rápidamente los beneficios de las descripciones 
+							de la interfaz ya que son útiles para resolver problemas e identificar una información de contacto y de conexión de terceros. <br>
+							Según el tipo de interfaz, es posible que se requieran parámetros adicionales. Por ejemplo, en el entorno del laboratorio, la interfaz serial que se conecta al extremo del cable serial rotulado DCE se debe configurar con el comando <code>clock rate.</code> <br>
+							<strong>Nota:</strong> Si se usa el comando <code>clock rate</code> por accidente en una interfaz DTE, se genera el mensaje de información "%Error: This command applies only to DCE interface" (%Error: Este comando se aplica únicamente a interfaces DCE). <br>
+							En las figuras 1 a 3, se proporcionan ejemplos de configuración de las interfaces del router R1. En la Figura 3, observe que el estado de Serial 0/0/0 es inactivo (down). El estado cambia a activo (up) cuando la interfaz  Serial 0/0/0 de R2 se cinfigura y se activa. 
+							<br>
+							<div>
+								<img src="images/configdelainterfazG0-0.PNG" alt="">
+								<img src="images/configdelainterfazG0-1.PNG" alt="">
+								<img src="images/configuracion de la interfaz serial 0-0-0.PNG" alt="">
+							</div>
+							Utilice el verificador se sintaxis de la figura 4 para configurar el router R2. <br>
+							<div>
+								<img src="images/configuracion de interfaces de R2-(1).PNG" alt="">
+								<img src="images/configuracion de interfaces de R2-(2).PNG" alt="">
+							</div>
+						</p>
+						<h2>Configuración de una interfaz de router IPv6</h2>
+						<p>
+							La configuración de una interfaz de IPv6 es similar a la configuración de una interfaz para IPv4. La mayoría de los comandos de configuración y verificación de IPv6 del IOS de Cisco son muy similares a sus equivalentes de IPv4. En la mayoría de los casos, la única diferencia 
+							es el uso de IPv6 en lugar de ip en los comandos. <br>
+							Se debe realizar lo siguiente con la interfaz IPv6:
+							<ul>
+								<li>
+									<strong>Configurarla con la dirección IPv6 y la máscara de subred.</strong> Use la dirección  ipv6 <i>dirección ipv6| longitud-prefijo</i> Comando de configuración de interfaz <code>[link-local | eui-64</code>.
+								</li>
+								<li>
+									<strong>Activar la interfaz:</strong> La interfaz se debe activar mediante el comando <code>no shutdown</code>.
+								</li>
+							</ul>
+							<strong>Nota:</strong> Una interfaz puede generar su propia dirección link-local de IPv6 sin tener una dirección de unidifusión global mediante el comando de configuración de interfaz <code>ipv6 enable</code>. <br>
+							A diferencia de IPv4, las interfaces IPv6 generalmente tienen más de una dirección IPv6. Como mínimo, los dispositivos IPv6 deben tener una dirección link-local de IPv6, pero también es muy probable que tengan una dirección de unidifusión global de IPv6. IPv6 también admite la 
+							capacidad de que una interfaz tenga varias direcciones de unidifusión global de IPv6 de la misma subred. Los siguientes comandos se pueden usar para crear, de forma estática, una dirección de unidifusión global o link-local de IPv6. 
+							<ul>
+								<li>
+									<b>ipv6 address</b> <i>dirección ipv6 | longitud-prefijo:</i> crea una dirección de unidifusión global de IPv6 según lo especificado.
+								</li>
+								<li>
+									<b>ipv6 address</b> <i>dirección-ipv6 | longitud-prefijo</i> <b>eui-64</b>: configura una dirección  de unidifusión global de IPv6 con un identificador de interfaz (ID) en los 64 bits de bajo orden de la dirección IPV6 mediante el proceso EUI-64. 
+								</li>
+								<li>
+									<b>ipv6 address</b> <i>direccion-ipv6 | longitud-prefijo</i> <b>link-local</b>: configurar una dirección link-local estática en la interfaz que se usa en lugar de ladirección link-local que se configura automáticamente cuando se asigna la dirección de unidifusión global de 
+									IPv6 a la interfaz, o cuando se habilita con el comando de interfaz <b>ipv6 enable</b>.  Recuerde que el comando de interfaz <code>ipv6 enable</code> se usa para crear de forma automática una dirección lonk-local de IPv6, así se haya asignado una dirección de unidifusión global
+									de IPV6 o no. 
+								</li>
+							</ul>
+							En la topología de ejemplo que se muestra en la figura 1, el R1 se debe configurar para que admita las siguientes direcciones de red IPv6.
+							<ul>
+								<li>
+									2001:0DB8:ACAD:0001:/64 o, de manera equivalente, 2001:DB8:ACAD:1::/64
+								</li>
+								<li>
+									2001:0DB8:ACAD:0002:/64 o, de manera equivalente, 2001:DB8:ACAD:2::/64
+								</li>
+								<li>
+									2001:0DB8:ACAD:0003:/64 o, de manera equivalente, 2001:DB8:ACAD:3::/64
+								</li>
+							</ul>
+							Cuando el router se configura con el comando de configuración global <code>ipv6 unicast-routing</code>, el router comienza a enviar mensajes de anuncio de router ICMPv6 por la interfaz. Esto permite que una computadora que está conecta a la interfaz configure una dirección IPV6 y establezca
+							un gateway predeterminado de forma automática, sin necesidad de utilizar los servicios de un servidor de DHCPv6. Por otra parte, una computadora conectada a la red IPV6 puede tener la dirección IPv6 configurada manualmente, como se muestra en la Figura 2. Observe que la dirección de gateway 
+							predeterminado configurada para la PC1 es la dirección de unidifusión global de IPv6 de la interfaz GigabitEthernet 0/0 del R1. <br>
+							Las interfaces del router en la topología de ejemplo se deben configurar y habilitar como se muestra en las figuras 3 a 5. <br>
+							<div>
+								<img src="images/topologia ipv6.PNG" alt="">
+								<img src="images/asignacion estatica de una direccion IPv6 a pc1.PNG" alt="">
+								<img src="images/configuracion de la interfaz serial 0-0 de R1.PNG" alt="">
+								<img src="images/configuracion de la interfaz serial 0-1 de R1.PNG" alt="">
+								<img src="images/configuracion de la interfaz serial 0-0-0 de R1.PNG" alt="">
+							</div>
+							Utilice el verificador de sintaxis de la figura 6 para configurar las direcciones de unidifusión global de IPv6 en el router R2. 
+							<div>
+								<img src="images/configuracion de interfaces de R2 - comandos.PNG" alt="">
+								<img src="images/configuracion de interfaces de R2 - comandos2.PNG" alt="">
+							</div>
+						</p>
+						<h2>configuración de una interfaz loopback IPv4</h2>
+						<p>
+							Otra configuracion comun de los router Cisco IOS es la habitacion de una interfaz loopback. <br>
+							La interfaz loopback es una interfaz lógica interna del router. Esta no se asigna a un puerto físico y, por lo tanto, nunca se puede conectar a otro dispositivo. Se la considera una interfaz de software que se coloca automaticamente en estado "up"
+							(activo), siempre que el router esté funcionamiento. <br>
+							La interfaz loopback es útil para probar y administrar un dispositivo Cisco IOS, ya que asegura que por lo menos una interfaz esté siempre  disponible. Por ejemplo, se puede usar con fines de prueba, como la prueba de procesos de routing interno, mediante la emulación de redes detrás del router. 
+							<br>
+							Además, la dirección IPv4 asignada a la interfaz loopback puede ser importante para los procesos en el router que usan una dirección IPV4 de interfaz con motivos de indentificación, como el proceso de routing del protocolo OSPF (Open Shortest Path First). Al habilitar una interfaz loopback, el router 
+							usa la dirección de la interfaz, en lugar de una dirección IP asignada a un puerto físico que puede dejar de funcionar. <br>
+							El proceso de habilitación y asignación de una dirección de loopback es simple: 
+<pre><code>Router (config) # interface  loopback numero 
+Router (config-if) # direccion-ip direccion-ip máscara-subred
+Router (config-if) # exit 
+</code></pre>
+							Se pueden habilitar varias interfaces loopback en un router. La dirección IPv4 para cada interfaz loopback debe ser única y no la debe usar ninguna otra interfaz. <br>
+							<img src="images/configuracion de la interfaz Loopback0.PNG" alt="">
+						</p>
+						<h2>Verificación de la configuración de interfaz.</h2>
+						<p>
+							Existen varios comandos <code>show</code> que se pueden verificar el funcionamiento y la configuración de una interfaz. Los siguientes tres comandos son particularmente útiles para identificar de forma rápida el estado de una interfaz: 
+							<ul>
+								<li>
+									<strong>show ip interface brief:</strong> muestra un resumen de todas las interfaces, incluidos la dirección IPv4 de la interfaz y el estado operativo actual.
+								</li>
+								<li>
+									<strong>show ip route:</strong> muestra el contenido de la tabla de routing IPv4 que se almacena en la RAM. En los IOS de Cisco 15, las interfaces activas deben aparecer en la tabla de routing con dos entradas relacionadas identificadas con el código "C" (conectada) o "L" (local). En versiones anteriores 
+									de IOS, solo aparece una única entrada con el código "C".
+								</li>
+								<li>
+									<strong>show running-config interface</strong> <i>interface-id</i>: muestra los comandos configurados en la interfaz especificada. 
+								</li>
+							</ul>
+							En la figura 1, se muestra el resultado del comando <code>show ip interface brief</code>. El resultado muestra que todas las interfaces LAN y el enlace WAN  están activos y en funcionamiento, como lo indica el valor "up" en las columnas Status (Estado) y Protocol (Protocolo). Un resultado distinto indicaría un problema 
+							con la configuración o el cableado. <br>
+							<strong>Nota:</strong> en la figura 1, se muestra la interfaz Embedded-Service-Engine0/0 porque los ISR Cisco G2 tienen CPU de doble núcleo en la placa madre. La interfaz Embedded-Service-Engine0/0 excede el ámbito de este curso. <br>
+							<img src="images/resumenes de la interfaz de visualizacion.PNG" alt=""> <br>
+							En la figura 2, se muestra el resultado del comando <code>show ip route</code>. Observe las tres entradas de redes conectadas directamente y las tres entradas de interfaz de ruta de host local. Una ruta de host local tiene una distancia administrativa de 0. También tiene una máscara /32 para IPv4 y una máscara /128 para IPv6. 
+							La ruta de host local es  para las rutas en el router  que posee la dirección IP. Estas se usan para permitir que el router procese los paquetes destinados a esa dirección IP. <br>
+							<img src="images/verificacion de la tabla de routing.PNG" alt=""><br>
+							En la figura 3 se muestra el resultado del comando <code>show running-config interface</code>. El resultado muestra los comandos configurados actualmente en la interfaz especificada. <br>
+							<img src="images/verificacion de una configuracion de interfaz.PNG" alt=""> <br>
+							Los dos comandos siguientes se usan para recopilar información más detallada sobre la interfaz:
+							<ul>
+								<li>
+									<strong>show interfaces</strong>: muestra información sobre la interfaz y el conteo de flujo de paquetes de todas las interfaces del dispositivo. 
+								</li>
+								<li>
+									<strong>show ip interface</strong>: muestra la información relacionada con IPv4 de todas las interfaces de un router.
+								</li>
+							</ul>
+							Utilice el verificador de sintaxis de las figuras 4 y 5 para verificar las interfaces del R1: 
+							<div>
+								<img src="images/verificacion de las interfaces del router 1.PNG" alt=""> <br>
+								<img src="images/verificacion de las interfaces del router 2.PNG" alt=""> <br> 
+								<img src="images/verificacion de las interfaces del router 3.PNG" alt=""> <br> 
+								<img src="images/verificacion de las interfaces del router 4.PNG" alt=""> <br> 
+								<img src="images/verificacion de las interfaces del router 5.PNG" alt=""> <br>
+							</div>
+							<div>
+								<img src="images/verificacion de las interfaces IP del router.PNG" alt="">
+								<img src="images/verificacion de las interfaces IP del router 2.PNG" alt="">
+								<img src="images/verificacion de las interfaces IP del router 3.PNG" alt="">
+								<img src="images/verificacion de las interfaces IP del router 4.PNG" alt="">
+								<img src="images/verificacion de las interfaces IP del router 5.PNG" alt="">
+								<img src="images/verificacion de las interfaces IP del router 6.PNG" alt="">
+							</div>
+						</p>
+						<h2>Verificacion de la configuración de interfaz IPv6.</h2>
+						<p>
+							Los comandos para verificar la configuración de interfaz IPv6 son similares a los comandos que se usan para IPv4. <br>
+							El comando show ipv6 interface brief de la Figura 1 muestra un resumen para cada una de las interfaces. El resultado "up/up" 
+							en la misma línea que el nombre de interfaz indica el estado de interfaz de capa 1/capa 2. Esto es lo mismo que las columnas 
+							Status (Estado) y Protocol (Protocolo) en el comando IPv4 equivalente. <br>
+							<img src="images/verificacion del estado de la interfaz R1.PNG" alt=""> <br>
+							El resultado muestra dos direcciones IPv6 configuradas por interfaz. Una de las direcciones es la dirección de unidifusión 
+							global de IPv6 que se introdujo manualmente. La otra, que comienza con FE80, es la dirección de unidifusión link-local para 
+							la interfaz. La dirección link-local se agrega automáticamente a una interfaz cuando se asigna una dirección de unidifusión 
+							global. Las interfaces de red IPv6 deben tener una dirección link-local, pero no necesariamente una dirección de unidifusión global. <br>
+							El resultado del comando show ipv6 interface gigabitethernet 0/0 que se muestra en la Figura 2 indica el estado de interfaz 
+							y todas las direcciones IPv6 que pertenecen a la interfaz. Además de la dirección link-local y la dirección de unidifusión 
+							global, el resultado incluye las direcciones de multidifusión asignadas a la interfaz, las cuales comienzan con el prefijo FF02. <br>
+							Como se muestra en la Figura 3, el comando show ipv6 route se puede utilizar para verificar si las redes IPv6 y las direcciones 
+							específicas de la interfaz IPv6 se instalaron en la tabla de routing IPv6. El comando showipv6route muestra solamente las redes IPv6, no las redes IPv4. <br>
+							<img src="images/verificacion de la configuracion de IPv6 en la G0-0 de R1.PNG" alt="">
+							En la tabla de routing, una “C” junto a una ruta indica que se trata de una red conectada directamente. Cuando la interfaz 
+							de router se configura con una dirección de unidifusión global y su estado es “up/up”, se agrega el prefijo y la longitud de 
+							prefijo IPv6 a la tabla de routing IPv6 como una ruta conectada. <br>
+							<img src="images/verificacion de la tabla de routing IPv6 de R1.PNG" alt="">
+							La dirección IPv6 de unidifusión global configurada en la interfaz también se instala en la tabla de routing como una ruta local. 
+							La ruta local tiene un prefijo /128. La tabla de routing utiliza las rutas locales para procesar eficazmente los paquetes cuyo destino 
+							es la dirección de la interfaz del router. <br>
+							El comando ping para IPv6 es idéntico al comando que se utiliza con IPv4, excepto que se utiliza una dirección IPv6. Como se muestra en 
+							la Figura 4, el comando ping se utiliza para verificar la conectividad de capa 3 entre R1 y PC1. <br>
+							<img src="images/verificacion de la conectividad en R1.PNG" alt="">
 						</p>
 					</section>
 
