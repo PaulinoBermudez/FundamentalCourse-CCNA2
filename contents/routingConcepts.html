@@ -576,7 +576,24 @@ Router (config-if) # exit
 								<img src="images/verificador-filtrado de comandos show.PNG" alt=""> <br>
 								<img src="images/verificador-filtrado de comandos show2.PNG" alt="">
 							</div>
-							
+						</p>
+						<h2>Características de historial de comandos.</h2>
+						<p>
+							La característica de comandos es útil, ya que almacena temporalmente la lista de comandos ejecutados que se deben recuperar. <br>
+							Para recuperar comandos del búfer de historial, presione <b>Ctrl+P</b> o la tecla <b>Flecha arriba</b>. El resultado de los comandos comienza con el comando más reciente. Repita la secuencia de teclas para recuperar sucesivamente los comandos más 
+							antiguos. Para volver a los comandos más recientes en el búfer de historial, presione Ctrl+N o la Flecha abajo. Repita la secuencia de teclas para recuperar sucesivamente los comandos más recientes. <br>
+							De manera predeterminada, el historial de comandos está habilitado, y el sistema captura las últimas 10 líneas de comandos  en el búfer de historial. Utilice el comando <code>show history</code> del modo EXEC privilegiado para mostrar el contenido 
+							del búfer. <br>
+							También es práctico aumentar la cantidad de líneas de comandos que registra el búfer de historial solamente durante la sesión de terminal actual. Utilice el comando <code>terminal history size</code> del modo EXEC del usuario para aumentar o reducir 
+							el tamaño del búfer. <br>
+							En la figura 1, se muestra un ejemplo de los comandos <code>terminal history size</code> y <code>show history</code>. 
+							<div>
+								<img src="images/comandos terminal history size y show history.PNG" alt="">
+							</div>
+							Utilice el verificador de sintaxis de la figura 2 para practicar los dos comandos del modo EXEC. 
+							<div>
+								<img src="images/caracteristicas de historial de comandos.PNG" alt="">
+							</div>
 						</p>
 					</section>
 
