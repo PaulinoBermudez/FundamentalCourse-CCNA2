@@ -543,7 +543,40 @@ Router (config-if) # exit
 						</p>
 						<h2>Filtrado de los resultados del comando show</h2>
 						<p>
-							1.1.4.3
+							Los comandos que generan varias pantallas de resultados se pausan al cabo de 24 líneas de manera predeterminada. Al final del resultado detenido, se muestra el texto -- More--. Si presiona Entrar, se muestra la siguiente  línea, y 
+							si presiona la barra espaciadora, se muestra el siguiente grupo de líneas. Utilice el comando <b>terminal length</b> para especificar la cantidad de líneas que se muestran. Un valor 0 (cero) evita que el router haga una pausa entre 
+							entre las pantallas de resultados. <br>
+							Otra característica muy útil que mejora la experiencia del usuario en la interfaz de línea de comandos (CLI) es el filtrado de los resultados del comando <b>show</b>. Los comandos de filtrado se pueden utilizar para mostrar secciones 
+							específicas de los resultados. Para habilitar el comando de filtrado, introduzca una bara vertical (|) después del comando <code>show</code> y, a continuación, introduzca un parámetro de filtrado y una expresión  del filtrado. <br>
+							Los parámetros de filtrado que se pueden configurar después de la barra vertical incluyen lo siguiente: 
+							<ul>
+								<li>
+									<strong>section:</strong> muestra la sección completa que comienza con la expresión de filtrado.
+								</li>
+								<li>
+									<strong>include:</strong> incluye todas las líneas de resultados que coinciden con la expresión de filtrado.
+								</li>
+								<li>
+									<strong>exclude:</strong> excluye todas las líneas de resultados que coinciden con la expresión de filtrado.
+								</li>
+								<li>
+									<strong>begin:</strong> muestra todas las líneas de resultados desde determinado punto, comenzando por la línea que coincide con la expresión de filtrado.
+								</li>
+							</ul>
+							<strong>Nota:</strong> los filtros de resultados se pueden utilizar junto con cualquier comando <b>show.</b> <br>
+							En la figura 1 a 4, se proporcionan ejemplos de los diversos filtros de resultados. <br>
+							<div>
+								<img src="images/filtrado de comando show.PNG" alt=""> <br>
+								<img src="images/filtrado de comandos show.PNG" alt=""> <br>
+								<img src="images/filtrado de comando show-exclude unassigned.PNG" alt=""> <br>
+								<img src="images/filtrado de comandos show 4.PNG" alt="">
+							</div>
+							Utilice el verificador de sintaxis de la figura para filtrar los resultados. <br>
+							<div>
+								<img src="images/verificador-filtrado de comandos show.PNG" alt=""> <br>
+								<img src="images/verificador-filtrado de comandos show2.PNG" alt="">
+							</div>
+							
 						</p>
 					</section>
 
