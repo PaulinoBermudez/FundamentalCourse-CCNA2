@@ -2158,13 +2158,24 @@ input, select, textarea {
 		color: inherit;
 		opacity: 0.5;
 	}
+/* Videos */
+	video {
+		width:100%;
+		height:auto;
+	}	
 
 /* Image */
+	img {
+		width: 75%;
+		height: auto;
+		position: relative;
+	}
 
 	.image {
 		border: 0;
 		display: inline-block;
 		position: relative;
+		
 	}
 
 		.image:after {
