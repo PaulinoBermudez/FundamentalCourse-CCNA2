@@ -632,6 +632,20 @@ Router (config-if) # exit
 							del protocolo punto a punto (PPP). Cuando R3 recibe la trama PPP, se desencapsula nuevamente y se vuelve a encapsular en una trama de Ethernet con una dirección MAC de destino 0B-20, antes de ser reenviada a través de la interfaz Fa0/0. <br>
 							<img src="images/encapsulamiento y desencapsulamiento de paquetes.PNG" alt=""> 
 						</p>
+						<h2>Envío de un  paquete.</h2>
+						<p>
+							
+							Envío de un paquete
+							En la animación de la ilustración, la PC1 envía un paquete a la PC2. La PC1 debe determinar si la dirección IPv4 de destino está en la misma red. La PC1 determina su propia subred realizando una operación AND en su propia dirección y máscara de subred IPv4. 
+							Esto produce la dirección de red a la que pertenece la PC1. A continuación, la PC1 realiza la misma operación AND con la dirección IPv4 de destino del paquete y la máscara de subred de la PC1. <br>
+							Si la dirección de red de destino está en la misma red que la PC1, entonces la PC1 no utiliza el gateway predeterminado. En lugar de esto, la PC1 consulta su caché ARP para obtener la dirección MAC del dispositivo con esa dirección IPv4 de destino. Si la 
+							dirección MAC no está en la caché, la PC1 genera una solicitud de ARP para obtener la dirección a fin de completar el paquete y enviarlo al destino. Si la dirección de red de destino está en una red diferente, la PC1 reenvía el paquete a su gateway predeterminado. <br>
+							Para determinar la dirección MAC del gateway predeterminado, la PC1 busca la dirección IPv4 del gateway predeterminado y la dirección MAC relacionada en su tabla ARP. <br>
+							Si no existe ninguna entrada ARP para el gateway predeterminado en la tabla ARP, la PC1 envía una solicitud de ARP. El router R1 envía una respuesta de ARP. Luego, la PC1 puede reenviar el paquete a la dirección MAC del gateway predeterminado, la interfaz Fa0/0 del router R1. <br>
+							Para los paquetes IPv6, se realiza un proceso similar. En lugar del proceso ARP, la resolución de direcciones IPv6 utiliza los mensajes ICMPv6 de solicitud y de anuncio de vecino. La asignación de direcciones IPv6 a MAC se guarda en una tabla similar 
+							a la caché ARP, denominada “caché de vecinos”. <br>
+							<video src="videos/PC1envíapaquetealaPC2.mp4" controls></video>
+						</p>
 					</section>
 
 				</div>
