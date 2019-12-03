@@ -870,10 +870,84 @@ Router (config-if) # exit
 							</div>
 							<img src="images/Actividades/interpretar el contenido de una entrada de la tabla de routing.PNG" alt="">
 						</p>
+						<h2>Interfaces conectadas directamente</h2>
+						<p>
+							Un router implementado recientemente, sin interfaces configuradas, tiene una tabla de routing vacía, como se muestra en la ilustración.
+							Antes de que el estado de la interfaz se considere up/up y se agregue a la tabla de routing IPv4, la interfaz debe cumplir con los siguientes requisitos:
+							<ul>
+								<li>Se le debe asignar una dirección IPv4 o IPv6 válida. </li>
+								<li>Se debe activar mediante el comando no shutdown. </li>
+								<li>Debe recibir una señal portadora de otro dispositivo (router, switch, host, etc.). </li>
+							</ul>
+							Una vez que la interfaz está activa, la red de esa interfaz se incorpora a la tabla de routing como red conectada directamente. <br>
+							<img src="images/tabla de routing vacía.PNG" alt="">
+						</p>
+						<h2>Entradas de tabla de routing conectaads directamente</h2>
+						<p>
+														
+							Entradas de tabla de routing conectadas directamente
+
+							Una interfaz activa, correctamente configurada y conectada directamente, genera dos entradas en la tabla de routing. En la ilustración, se muestran las entradas de la tabla de routing IPv4 en el R1 para la red conectada directamente 192.168.10.0.
+
+							La entrada de la tabla de routing para las interfaces conectadas directamente es más simple que las entradas para las redes remotas. Las entradas contienen la siguiente información:
+							<ul>
+								<li>
+									Origen de la ruta: identifica el modo en que se descubrió la ruta. Las interfaces conectadas directamente tienen dos códigos de origen de ruta. El código“C” identifica una red conectada directamente. El código “L” identifica la dirección IPv4 
+									asignada a la interfaz del router. 
+								</li>
+								<li>
+									Red de destino: la dirección de la red remota.
+								</li>
+								Interfaz de salida: identifica la interfaz de salida que se utiliza para reenviar paquetes a la red de destino.
+							</ul>
+							Nota: antes de IOS 15, no se mostraban las entradas de la tabla de routing de ruta local (L) en la tabla de routing IPv4. Las entradas de ruta local (L) siempre formaron parte de la tabla de routing IPv6. <br>
+							<img src="images/identificadores de entrada de red conectadas directamente.PNG" alt="">
+						</p>
+						<h2>Ejemplos de interfaces conectadas directamente</h2>
+						<p>
+							En los ejemplos de las figuras 1 a 3, se muestran los pasos para configurar y activar las interfaces conectadas al R1. Observe los mensajes informativos de capa 1 y 2 que se generan a medida que se activa cada interfaz. <br>
+							A medida que se agregan interfaces, la tabla de routing agrega automáticamente las entradas conectadas (“C”) y locales (“L”). En la figura 4, se proporciona un ejemplo de la tabla de routing con las interfaces del R1 conectadas directamente configuradas 
+							y activadas. <br>
+							<div>
+								<img src="images/Configuracion de una interfaz Gigabit Ethernet conectada directamente.PNG" alt="">
+								<img src="images/Configuracion de una interfaz Gigabit Ethernet conectada directamente-2.PNG" alt="">
+								<img src="images/Configuracion de una interfaz serial conectada directamente.PNG" alt="">
+								<img src="images/verificacion de las entradas de la tabla de routing conectadas directamente.PNG" alt="">
+							</div>
+							Utilice el verificador de sintaxis de la figura 5 para configurar y activar las interfaces conectadas al R2. <br>
+							<div>
+								<img src="images/configuracion de las interfaces conectadas directamente en R2-0.PNG" alt=""> <br>
+								<img src="images/configuracion de las interfaces conectadas directamente en R2-1.PNG" alt=""> <br>
+								<img src="images/configuracion de las interfaces conectadas directamente en R2-2.PNG" alt=""> <br>
+								<img src="images/configuracion de las interfaces conectadas directamente en R2-3.PNG" alt=""> <br>
+							</div>
+						</p>
+						<h2>Ejemplo de interfaz IPv6 conectada directamente</h2>
+						<p>
+							En el ejemplo de la figura 1, se muestran los pasos de configuración de las interfaces del R1 conectadas directamente con las direcciones IPv6 indicadas. Observe los mensajes informativos de capa 1 y capa 2 que se generan a medida que se configura y se activa cada interfaz.
+							<img src="images/config de las interfaces ipv6 de r1 conectadas directamente-0.PNG" alt=""> <br>
+							<img src="images/config de las interfaces ipv6 de r1 conectadas directamente-1.PNG" alt=""> <br>
+							<img src="images/config de las interfaces ipv6 de r1 conectadas directamente-2.PNG" alt=""> <br>
+							Como se muestra en la Figura 2, el comando show ipv6 route se utiliza para verificar si las redes IPv6 y las direcciones específicas de la interfaz IPv6 se instalaron en la tabla de routing IPv6. Como en IPv4, una “C” junto a una ruta indica que se trata de una red conectada 
+							directamente. Una “L” indica la ruta local. En una red IPv6, la ruta local tiene un prefijo /128. La tabla de routing utiliza las rutas locales para procesar eficazmente los paquetes cuya dirección de destino es la interfaz del router. <br>
+							<img src="images/visualizacion de la tabla de rutas IPv6.PNG" alt=""> <br>
+							<img src="images/visualizacion de la tabla de rutas IPv6-1.PNG" alt=""> <br>
+							<img src="images/visualizacion de la tabla de rutas IPv6-2.PNG" alt=""> <br>
+							Observe que también se instaló una ruta a la red FF00::/8. Esta ruta se requiere para el routing de multidifusión. <br>
+							En la figura 3, se muestra cómo el comando show ipv6 route se puede combinar con un destino de red específico para mostrar los detalles de cómo el router descubrió dicha ruta. <br>
+							<img src="images/visualizacion de una entrada de ruta IPv6.PNG" alt=""> <br>
+							En la Figura 4 se muestra cómo se puede verificar la conectividad a R2 mediante el comando ping. <br>
+							<img src="images/prueba de conectividad para probar la interfaz S0-0-0 de R2.PNG" alt="">
+							En la Figura 5, observe qué sucede cuando la interfaz LAN G0/0 del R2 es el objetivo del comando ping. Los pings no tienen éxito. Esto se debe a que el R1 no tiene ninguna entrada en la tabla de routing para llegar a la red 2001:DB8:ACAD:4::/64. <br>
+							<img src="images/prueba de conectividad a la interfaz G0-0 de R2.PNG" alt="">
+							El R1 requiere información adicional para llegar a una red remota. Se pueden agregar entradas de ruta de red remota a la tabla de routing mediante los siguientes métodos:
+							<ul>
+								<li> Routing estático</li>
+								<li> Protocolos de enrutamiento dinámico</li>
+							</ul>
+						</p>
 					</section>
 				</div>
-				
-
 				<footer class="major container medium">
 					<h4>Quote about Networking...</h4>
 					<p>Networking is a lot like nutrition and fitness: we know what to do, the hard part is making it a top priority.</p>
