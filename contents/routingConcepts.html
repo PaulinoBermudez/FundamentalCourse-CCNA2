@@ -738,6 +738,72 @@ Router (config-if) # exit
 								Situación 2.
 							</div> 
 						</p>
+						<h2>Deciciones de routing</h2>
+						<p>
+							Una de las funciones principales de los routers es determinar la mejor ruta para enviar paquetes. Para determinar la mejor ruta, el router busca en su tabla de routing una dirección de red que coincida con la dirección IP de destino del paquete.
+							La tabla de routing busca resultados en una de tres determinaciones de ruta:
+							<ul>
+								<li> 
+									Red conectada directamente: si la dirección IP de destino del paquete pertenece a un dispositivo en una red que está conectada directamente a una de las interfaces del router, ese paquete se reenvía directamente al dispositivo de destino. 
+									Esto significa que la dirección IP de destino del paquete es una dirección host en la misma red que la interfaz del router.
+								</li>
+								<li>
+									Red remota: si la dirección IP de destino del paquete pertenece a una red remota, el paquete se reenvía a otro router. Sólo se pueden alcanzar las redes remotas mediante el reenvío de paquetes hacia otra red.
+								</li>
+								<li> 
+									Ninguna ruta determinada: si la dirección IP de destino del paquete no pertenece a una red conectada ni remota, el router determina si se dispone de un gateway de último recurso. El gateway de último recurso se establece cuando se configura o 
+									aprende una ruta predeterminada en un router. Si hay una ruta predeterminada, el paquete se reenvía al gateway de último recurso. Si el router no tiene una ruta predeterminada, el paquete se descarta.
+								</li>
+							</ul>
+							En el diagrama de flujo lógico de la ilustración, se describe el proceso de decisión de reenvío de paquetes del router. <br>
+							La figura es un diagrama de flujo del proceso de decisión de reenvío de paquetes por el que pasa un router al recibir un paquete. Este es un resumen de la lectura. <br>
+							<img src="images/proceso de decision de renvio de paquetes.PNG" alt="">
+						</p>
+						<h2>El mejor camino</h2>
+						<p>
+							La determinación de la mejor ruta implica la evaluación de varias rutas hacia la misma red de destino y la selección de la ruta óptima o la más corta para llegar a esa red. Cuando existen varias rutas hacia la misma red, cada ruta utiliza una interfaz 
+							de salida diferente en el router para llegar a esa red. <br>
+							El mejor camino es elegido por un protocolo de enrutamiento en función del valor o la métrica que usa para determinar la distancia para llegar a esa red. Una métrica es un valor cuantitativo que se utiliza para medir la distancia que existe hasta una 
+							red determinada. El mejor camino a una red es la ruta con la métrica más baja. <br>
+							Los protocolos de enrutamiento dinámico generalmente usan sus propias reglas y métricas para construir y actualizar las tablas de enrutamiento. El algoritmo de enrutamiento genera un valor, o una métrica, para cada ruta a través de la red. 
+							Las métricas se pueden calcular sobre la base de una sola característica o de varias características de una ruta. Algunos protocolos de enrutamiento pueden basar la elección de la ruta en varias métricas, combinándolas en un único valor métrico. <br>
+							A continuación, se indican algunos protocolos dinámicos y las métricas que utilizan:
+							<ul>
+								<li> Protocolo de información de routing (RIP): conteo de saltos.</li>
+								<li> Protocolo OSPF (Open Shortest Path First): el costo de Cisco según el ancho de banda acumulativo de origen a destino.</li>
+								<li> Protocolo de routing de gateway interior mejorado (EIGRP): ancho de banda, retraso, carga, confiabilidad.</li>
+							</ul>
+							En la animación de la ilustración, se destaca cómo la ruta puede ser diferente según la métrica que se utiliza. <br>
+							<video src="videos/elmejorcamino.mp4" controls></video>
+						</p>
+						<h2>Equilibrio de carga</h2>
+						<p>
+							¿Qué sucede si una tabla de routing tiene dos o más rutas con métricas idénticas hacia la misma red de destino?
+							Cuando un router tiene dos o más rutas hacia un destino con métrica del mismo costo, el router reenvía los paquetes usando ambas rutas por igual. Esto se denomina “balanceo de carga de mismo costo”. La tabla de routing contiene la única red de destino 
+							pero tiene varias interfaces de salida, una para cada ruta de mismo costo. El router reenvía los paquetes utilizando las distintas interfaces de salida que se indican en la tabla de routing. <br>
+							Si está configurado correctamente, el balanceo de carga puede aumentar la efectividad y el rendimiento de la red. El balanceo de carga de mismo costo puede configurarse para usar tanto protocolos de enrutamiento dinámico como rutas estáticas. <br>
+							<b>Nota:</b> solo EIGRP admite el balanceo de carga con distinto costo. <br>
+							En la animación de la ilustración, se proporciona un ejemplo de balanceo de carga de mismo costo.
+							<video src="videos/balanceo de carga del mismo costo.mp4" controls></video>
+						</p>
+						<h2>Distancia administrativa</h2>
+						<p>
+							Es posible configurar un router con varios protocolos de routing y varias rutas estáticas. Si esto ocurre, la tabla de routing puede tener más de un origen de ruta para la misma red de destino. Por ejemplo, si se configura RIP y EIGRP en un router, 
+							ambos protocolos de routing pueden descubrir la misma red de destino. Sin embargo, cada protocolo de routing puede decidir tomar una ruta diferente para llegar al destino según las métricas de ese protocolo de routing. RIP elige una ruta según el 
+							conteo de saltos, mientras que EIGRP elige una ruta según la métrica compuesta. ¿Cómo sabe el router qué ruta debe utilizar? <br>
+							El IOS de Cisco utiliza lo que se conoce como “distancia administrativa” (AD) para determinar la ruta que se debe instalar en la tabla de routing de IP. La AD representa la “confiabilidad” de la ruta: cuanto menor sea la AD, más confiable será el 
+							origen de la ruta. Por ejemplo, la AD de una ruta estática es 1, mientras que la AD de una ruta descubierta por EIGRP es 90. El router elige la ruta con la AD más baja entre dos rutas diferentes al mismo destino. Cuando un router puede elegir entre una 
+							ruta estática y una ruta EIGRP, la ruta estática tiene prioridad. Asimismo, una ruta conectada directamente con una AD de 0 tiene prioridad sobre una ruta estática con una AD de 1. <br>
+							En la ilustración, se muestran diferentes protocolos de routing y sus AD asociadas. <br>
+							<img src="images/distanciasAdmiistrativasPredeterminadas.PNG" alt="">
+						</p>
+						<h2>Actividad: Ordenar los pasos del proceso de reenvío de paquetes.</h2>
+						<p>
+							<img src="images/Actividades/ordenar los pasos del proceso de reenvío de paquetes 1.PNG" alt=""> <br>
+							<img src="images/Actividades/ordenar los pasos del proceso de reenvío de paquetes 2.PNG" alt=""> <br>
+							<img src="images/Actividades/ordenar los pasos del proceso de reenvío de paquetes 3.PNG" alt=""> <br>
+							<img src="images/Actividades/ordenar los pasos del proceso de reenvío de paquetes 4.PNG" alt=""> 
+						</p>
 					</section>
 				</div>
 				
