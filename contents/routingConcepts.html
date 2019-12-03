@@ -665,7 +665,7 @@ Router (config-if) # exit
 							y el R2 envía una respuesta de ARP. A continuación, el R1 actualiza su caché ARP con una entrada para 192.168.2.2 y la dirección MAC asociada. <br>
 							2. El paquete IPv4 ahora se encapsula en una nueva trama de Ethernet y se reenvía por la interfaz FastEthernet 0/1 del R1. <br>
 							En la animación de la ilustración, se muestra cómo el R1 reenvía el paquete al R2. <br>
-							<video src="videos/R1reenviaelpaqueteaPC2.mp4" aria-controls=""></video>
+							<video src="videos/R1reenviaelpaqueteaPC2.mp4"controls></video>
 						</p>
 						<h2>Routing de paquetes</h2>
 						<p>
@@ -688,10 +688,57 @@ Router (config-if) # exit
 							Cuando la interfaz es una conexión serial punto a punto (P2P), el router encapsula el paquete IPv4 en el formato de trama de enlace de datos correspondiente que utiliza la interfaz 
 							de salida (HDLC, PPP, etc.). Debido a que no hay direcciones MAC en las interfaces seriales, el R2 establece la dirección de destino de enlace de datos en el equivalente a una difusión. <br>
 							En la animación de la ilustración, se muestra cómo el R2 reenvía el paquete al R3. <br>
-							<video src="videos/routingdepaquetes.mp4"></video>
+							<video src="videos/routingdepaquetes.mp4" controls></video>
+						</p>
+						<h2>Llegar al destino</h2>
+						<p>
+							Los siguientes procesos ocurren cuando la trama llega al R3:
+							<ul>
+								<li>
+									El R3 copia la trama PPP de enlace de datos en su búfer.
+								</li>
+								<li>
+									El R3 desencapsula la trama PPP de enlace de datos.
+								</li>
+								<li>
+									El R3 busca la dirección IPv4 de destino del paquete en la tabla de routing. La tabla de routing tiene una ruta a una red conectada directamente en el R3. Esto significa que el paquete puede enviarse directamente al
+									dispositivo de destino y no es necesario enviarlo a otro router.
+								</li>
+							</ul>
+							Dado que la interfaz de salida es una red Ethernet conectada directamente, el R3 debe resolver la dirección IPv4 de destino del paquete con una dirección MAC de destino: 
+							<ul>
+								<li>
+									El R3 busca la dirección IPv4 de destino del paquete  en la caché del protocolo de resolución de direcciones (ARP). Si la entrada no aparece en la caché ARP, el R3 envía una solicitud de ARP por la interfaz FastEthernet 0/0. 
+									La PC2 envía a cambio una respuesta ARP con su dirección  MAC. A continuación, el R3 actualiza su caché ARP con una entrada para 192.168.4.10 y la dirección MAC que se devolvió en la respuesta de ARP. 
+								</li>
+								<li>
+									El paquete IPv4 se encapsula en una nueva trama de enlace de datos de Ethernet y se envía por la interfaz FasthEthernet 0/0 del R3. 
+								</li>
+								<li>
+									Cuando la PC2 recibe la trama, examina la dirección MAC de destino, que coincide con la dirección MAC de la interfaz receptora, la tarjeta de interfaz de red (NIC) Ethernet. Por lo tanto, la PC2 copia el resto de la trama en su búfer. 
+								</li>
+								<li>
+									Cuando la PC2 distingue que el campo tipo de Ethernet es 0x800, lo que significa que la trama de Ethernet contiene un paquete IPv4 en la porción de datos de la trama.
+								</li>
+								<li>
+									La PC2 desencapsula la trama de Ethernet y envía el paquete IPv4 al proceso IPv4 de su sistema operativo.
+								</li>
+							</ul>
+							En la animación de la ilustración, se muestra cómo el R3 reenvía el paquete a la PC2. <br>
+							<video src="videos/llegaraldestino.mp4" controls></video>
+						</p>
+						<h2>Actividad: Unir capas</h2>
+						<p>
+							<div>
+								<img src="images/Actividades/unir capas.PNG" alt="" sizes="1080" srcset=""> <br>
+								Situación 1.
+							</div>
+							<div>
+								<img src="images/Actividades/unir capas 2.PNG" alt="" sizes="1080" srcset=""> <br>
+								Situación 2.
+							</div> 
 						</p>
 					</section>
-
 				</div>
 				
 
