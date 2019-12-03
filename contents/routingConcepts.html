@@ -804,6 +804,48 @@ Router (config-if) # exit
 							<img src="images/Actividades/ordenar los pasos del proceso de reenvío de paquetes 3.PNG" alt=""> <br>
 							<img src="images/Actividades/ordenar los pasos del proceso de reenvío de paquetes 4.PNG" alt=""> 
 						</p>
+						<h2>Actividad: Una la distancia administrativa con el origen de su ruta.</h2>
+						<p>
+							<img src="images/Actividades/una de la distancia administrativa con el origen de su ruta.PNG" alt="">
+						</p>
+						<h2>Tabla de routing.</h2>
+						<p>	
+							La tabla de enrutamiento de un router almacena información sobre lo siguiente:
+							<ul>
+								<li> <strong> Rutas conectadas directamente: </strong> estas rutas provienen de las interfaces activas del router. Los routers agregan una ruta conectada directamente cuando una interfaz se configura con una dirección IP y se activa. </li>
+								<li> <strong> Rutas remotas:</strong>  estas son redes remotas conectadas a otros routers. Las rutas que van a estas redes se pueden configurar de forma estática o aprender de manera dinámica mediante protocolos de routing dinámico.</li>
+							</ul>
+							Concretamente, una tabla de routing es un archivo de datos que se encuentra en la RAM y se utiliza para almacenar información de rutas sobre redes remotas y conectadas directamente. La tabla de routing contiene asociaciones de red o de siguiente salto. 
+							Estas asociaciones le indican al router que un destino en particular se puede alcanzar de forma óptima si se envía el paquete hacia un router en particular que representa el siguiente salto en el camino hacia el destino final. La asociación del siguiente 
+							salto también puede ser la interfaz de salida hacia el siguiente destino. <br>
+							En la ilustración, se identifican las redes conectadas directamente y las redes remotas del router R1. <br>
+							En la figura se muestran dos routers conectados entre sí a través de un enlace serial WAN. Cada router tiene dos redes locales conectadas a las interfaces de red LAN. Cualquier red que se asigne a la interfaz local de un router se considera una red conectada 
+							directamente y todas las redes conectadas a otros routers se consideran redes remotas. <br>
+							<img src="images/rutas de redes conectadas directamente y de redes remotas.PNG" alt="">
+						</p>
+						<h2>Orígenes de la tabla de routing.</h2>
+						<p>
+							En los routers Cisco, se puede utilizar el comando show ip route para mostrar la tabla de routing IPv4 de un router. Los routers proporcionan información adicional de la ruta, incluso la forma en que se descubrió la ruta, cuánto tiempo estuvo la ruta en la 
+							tabla de routing y qué interfaz específica se debe utilizar para llegar a un destino predefinido. <br>
+							Las entradas en la tabla de routing se pueden agregar como lo siguiente: 
+							<ul>
+								<li><strong> Interfaces de ruta local:  </strong> se agregan cuando la interfaz está configurada y activa. Esta entrada solo se muestra en la versión IOS 15 o más reciente para las rutas IPv4, y en todas las versiones de IOS para las rutas IPv6.  </li>
+								<li><strong> Interfaces conectadas directamente:  </strong> se agregan a la tabla de routing cuando la interfaz está configurada y activa. </li>
+								<li><strong> Rutas estáticas: </strong>  se agregan cuando una ruta se configura manualmente y la interfaz de salida está activa. </li>
+								<li><strong> Protocolo de routing dinámico: </strong>  se agrega cuando se implementan protocolos de routing que descubren la red de manera dinámica, como EIGRP u OSPF, y cuando se identifican las redes. </li>
+							</ul>
+							Los orígenes de las entradas de la tabla de routing se identifican con un código. El código identifica la forma en que se descubrió la ruta. Por ejemplo, los códigos frecuentes incluyen lo siguiente:
+							<ul>
+								<li> L: identifica la dirección asignada a la interfaz de un router. Esto permite que el router determine de forma eficaz si recibe un paquete para la interfaz o para reenviar. </li>
+								<li> C: identifica una red conectada directamente. </li>
+								<li> S: identifica una ruta estática creada para llegar a una red específica. </li>
+								<li> D: identifica una red que se descubre de forma dinámica de otro router con EIGRP. </li>
+								<li> O: indica una red que se descubre de forma dinámica de otro router con el protocolo de routing OSPF. </li>
+							</ul>
+							En la ilustración, se muestra la tabla de enrutamiento del R1 en una red simple. <br>
+							<video src="videos/tabla de routing del R1.mp4" autoplay loop></video>
+							
+						</p>
 					</section>
 				</div>
 				
