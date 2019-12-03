@@ -924,7 +924,7 @@ Router (config-if) # exit
 						</p>
 						<h2>Ejemplo de interfaz IPv6 conectada directamente</h2>
 						<p>
-							En el ejemplo de la figura 1, se muestran los pasos de configuración de las interfaces del R1 conectadas directamente con las direcciones IPv6 indicadas. Observe los mensajes informativos de capa 1 y capa 2 que se generan a medida que se configura y se activa cada interfaz.
+							En el ejemplo de la figura 1, se muestran los pasos de configuración de las interfaces del R1 conectadas directamente con las direcciones IPv6 indicadas. Observe los mensajes informativos de capa 1 y capa 2 que se generan a medida que se configura y se activa cada interfaz. <br>
 							<img src="images/config de las interfaces ipv6 de r1 conectadas directamente-0.PNG" alt=""> <br>
 							<img src="images/config de las interfaces ipv6 de r1 conectadas directamente-1.PNG" alt=""> <br>
 							<img src="images/config de las interfaces ipv6 de r1 conectadas directamente-2.PNG" alt=""> <br>
@@ -937,15 +937,22 @@ Router (config-if) # exit
 							En la figura 3, se muestra cómo el comando show ipv6 route se puede combinar con un destino de red específico para mostrar los detalles de cómo el router descubrió dicha ruta. <br>
 							<img src="images/visualizacion de una entrada de ruta IPv6.PNG" alt=""> <br>
 							En la Figura 4 se muestra cómo se puede verificar la conectividad a R2 mediante el comando ping. <br>
-							<img src="images/prueba de conectividad para probar la interfaz S0-0-0 de R2.PNG" alt="">
+							<img src="images/prueba de conectividad para probar la interfaz S0-0-0 de R2.PNG" alt=""> <br>
 							En la Figura 5, observe qué sucede cuando la interfaz LAN G0/0 del R2 es el objetivo del comando ping. Los pings no tienen éxito. Esto se debe a que el R1 no tiene ninguna entrada en la tabla de routing para llegar a la red 2001:DB8:ACAD:4::/64. <br>
-							<img src="images/prueba de conectividad a la interfaz G0-0 de R2.PNG" alt="">
+							<img src="images/prueba de conectividad a la interfaz G0-0 de R2.PNG" alt=""> <br>
 							El R1 requiere información adicional para llegar a una red remota. Se pueden agregar entradas de ruta de red remota a la tabla de routing mediante los siguientes métodos:
 							<ul>
 								<li> Routing estático</li>
 								<li> Protocolos de enrutamiento dinámico</li>
 							</ul>
 						</p>
+						<h2>Packet Tracer: Investigación de rutas conectadas directamente</h2>
+						<p>
+							<a href="Documents/1.3.2.5 Packet Tracer - Investigating Directly Connected Routes Instructions.pdf" target="_blank" rel="noopener noreferrer">PT: Investigación de rutas conectadas directamente (Instrucciones)</a>
+							<br>
+							<a href="Documents/1.3.2.5 Packet Tracer - Investigating Directly Connected Routes.pka" target="_blank" rel="noopener noreferrer">PT: Investigación de rutas conectadas directamente (PKA)</a>
+						</p>
+						1.3.3.1
 					</section>
 				</div>
 				<footer class="major container medium">
