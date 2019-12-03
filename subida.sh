@@ -30,8 +30,14 @@ git nota "Introduction -- CCNA2"
 git add contents/images/. &&
 git nota "Introduction -- CCNA2 (Images)" &&
 git sube 
+git add contents/videos/. &&
+git nota "Introduction -- CCNA2 (Videos)" &&
+git sube 
+git add contents/Documents/. &&
+git nota "Introduction -- CCNA2 (Docs)" &&
+git sube 
 git add contents/. &&
-git nota "Introduction -- CCNA2 (Images)" &&
+git nota "Introduction -- CCNA2" &&
 git sube 
 echo "Archivo(s) contents -- Terminado"
 # Images
