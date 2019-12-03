@@ -844,7 +844,22 @@ Router (config-if) # exit
 							</ul>
 							En la ilustración, se muestra la tabla de enrutamiento del R1 en una red simple. <br>
 							<video src="videos/tabla de routing del R1.mp4" autoplay loop></video>
-							
+						</p>
+						<h2>Entradas de tabla de routing de red remota.</h2>
+						<p>
+							Como administrador de redes, es imprescindible saber cómo interpretar el contenido de las tablas de routing IPv4 e IPv6. En la ilustración, se muestra una entrada de la tabla de routing IPv4 en el R1 para la ruta a la red remota 10.1.1.0.
+							La entrada indica la siguiente información:
+							<ul>
+								<li>Origen de la ruta: identifica el modo en que se descubrió la ruta. </li>
+								<li>Red de destino: identifica la dirección de la red remota. </li>
+								<li>Distancia administrativa: identifica la confiabilidad del origen de la ruta. Los valores más bajos indican el origen de ruta preferido. </li>
+								<li>Métrica: identifica el valor asignado para llegar a la red remota. Los valores más bajos indican las rutas preferidas. </li>
+								<li>Siguiente salto: identifica la dirección IPv4 del router siguiente al que se debe reenviar el paquete. </li>
+								<li>Marca de hora de la ruta: identifica el tiempo que pasó desde que se descubrió la ruta. </li>
+								<li>Interfaz de salida: identifica la interfaz de salida que se debe utilizar para reenviar un paquete hacia el destino final. </li>
+							</ul>
+							La figura muestra una línea del resultado del comando show ip route y resalta cada información como se describe en la lectura.
+							<img src="images/identificadores de entrada de red remota.PNG" alt="">
 						</p>
 					</section>
 				</div>
