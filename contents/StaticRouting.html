@@ -32,10 +32,90 @@
 							Las rutas estáticas son muy comunes y no requieren la misma cantidad de procesamiento y sobrecarga que los protocolos de routing dinámico. <br>
 							En este capítulo, se utilizarán topologías de ejemplo para configurar las rutas estáticas IPv4 e IPv6 y para presentar técnicas de resolución de problemas. A lo largo del proceso, se analizarán varios comandos importantes de IOS y los resultados 
 							que generan. Se incluirá una introducción a la tabla de routing con redes conectadas directamente y rutas estáticas.
-
+						</p>
+						<h2>Actividad: ¿Qué camino debemos tomar?</h2>
+						<p>
+							<img class="image" src="images/Actividades/que camino debemos tomar.PNG"  alt=""> <br>
+							<a href="Documents/2.0.1.2 Which Way Should We Go Instructions.pdf" target="_blank" rel="noopener noreferrer">Actividad de clase: Qué camino debemos tomar (Instrucciones)</a>
+						</p>
+						<h2>Alcance de redes remotas</h2>
+						<p>
+							Un router puede descubrir redes remotas de dos maneras:
+							<ul>
+								<li>
+									<strong>Manualmente:</strong> las redes se introducen de forma manual en la tabla de rutas por medio de rutas estáticas.										
+								</li>
+								<li>
+									<strong>Dinámicamente:</strong> las rutas remotas se descubren de forma automática mediante un protocolo de routing dinámico.
+								</li>
+							</ul>
+							En la figura 1, se proporciona una situación de ejemplo de routing estático. En la figura 2, se proporciona una situación de ejemplo de routing dinámico con EIGRP. <br>
+							<img src="images/situacion de rutas estaticas y predeterminadas-alcance de redes remotas.PNG" alt=""> <br>
+							Un administrador de red puede configurar una ruta estática manualmente para alcanzar una red específica. A diferencia de un protocolo de routing dinámico, las rutas estáticas 
+							no se actualizan automáticamente, y se deben volver a configurar manualmente cada vez que cambia la topología de la red. <br>
+							<img src="images/situacion de routing dinamico alcance de redes remotas.PNG" alt="">
+						</p>
+						<h2>¿Por qué utilizar el routing estático?</h2>
+						<p>
+							El routing estático proporciona algunas ventajas en comparación con el routing dinámico, por ejemplo:
+							<ul>
+								<li>
+									- Las rutas estáticas no se anuncian a través de la red, lo cual aumenta la seguridad.
+								</li>
+								<li>
+									- Las rutas estáticas consumen menos ancho de banda que los protocolos de routing dinámico. No se utiliza ningún ciclo de CPU para calcular y comunicar las rutas.
+								</li>
+								<li>
+									- La ruta que usa una ruta estática para enviar datos es conocida.
+								</li>
+							</ul>
+							El routing estático tiene las siguientes desventajas:
+							<ul>
+								<li>
+									- La configuración inicial y el mantenimiento son prolongados.
+								</li>
+								<li>
+									- La configuración es propensa a errores, especialmente en redes extensas.
+								</li>
+								<li>
+									- Se requiere la intervención del administrador para mantener la información cambiante de la ruta.
+								</li>
+								<li>
+									- No se adapta bien a las redes en crecimiento, el mantenimiento se torna cada vez más complicado.
+								</li>
+								<li>
+									- Requiere un conocimiento completo de toda la red para una correcta implementación.
+								</li>
+							</ul>
+							<img src="images/comparacion entre routing dinamico y estatico.PNG" alt=""> <br>
+							En la ilustración, se comparan las características del routing dinámico y el routing estático. Observe que las ventajas de un método son las desventajas del otro. <br>
+							Las rutas estáticas son útiles para redes más pequeñas con solo una ruta hacia una red externa. También proporcionan seguridad en una red mñas grande para ciertos tipos de tráfico o enlaces a otras redes que 
+							necesitan más control. Es importante comprender que el routing estático y el routing dinámico son mutuamente excluyentes. En cambio, la mayoría de las redes utilizan una combinación de protocolos de routing dinámico 
+							no son mutuamente excluyentes. En cambio, la mayoría de las redes utilizan una combinación de protocolos de routing dinámico y rutas estáticas. Esto puede ocasionar que el router tenga varias rutas a una red de 
+							destino a través de rutas estáticas y rutas descubiertas dinámicamente. Sin embargo, recuerde que el valor de la distancia administrativa (AD) es una medida de la preferencia de los orígenes de ruta. Los orígenes 
+							de ruta con valores bajos de AD se prefieren sobre los orígenes de rutas con valores altos de AD. El valor de AD para una ruta estática es 1. Por lo tanto, una ruta estática tendrá prioridad sobre todas las rutas 
+							aprendidas dinámicamente, que tendrán valores mayores de AD. <br>
+						</p>
+						<h2>Cuándo usar rutas estáticas</h2>
+						<p>
+							El routing estático tiene tres usos principales:
+							<ul>
+							   <li>Facilita el mantenimiento de la tabla de enrutamiento en redes más pequeñas en las cuales no está previsto que crezcan significativamente.</li>
+							   <li>Proporciona routing hacia las redes de rutas internas y desde estas. Una red de rutas internas es aquella a la cual se accede a través un de una única ruta y cuyo router tiene solo un vecino.</li>
+							   <li>Utiliza una única ruta predeterminada para representar una ruta hacia cualquier red que no tenga una coincidencia más específica con otra ruta en la tabla de routing. Las rutas predeterminadas se utilizan 
+								   para enviar tráfico a cualquier destino que esté más allá del próximo router ascendente.</li>
+							</ul>
+							En la ilustración, se muestra un ejemplo de la conexión de una red de rutas internas y de la conexión de una ruta predeterminada. En dicha ilustración, observe que cualquier red conectada al R1 solo tiene una manera 
+							de alcanzar otros destinos, ya sean redes conectadas al R2 o destinos más allá del R2. Por lo tanto, la red 172.16.3.0 es una red de rutas internas y el R1 es un router de rutas internas. <br>
+							En este ejemplo, se puede configurar una ruta estática en el R2 para alcanzar la LAN del R1. Además, como el R1 tiene solo una forma de enviar tráfico no local, se puede configurar una ruta estática predeterminada en 
+							el R1 para señalar al R2 como el siguiente salto para todas las otras redes. <br>
+							<img src="images/redes y routers de rutas internas.PNG" alt="">
+						</p>
+						<h2>Actividad: Identificar las ventajas y desventajas del routing estático</h2>
+						<p>
+							<img src="images/Actividades/identificar las ventajas y desventajas del routing estatico.PNG" alt="">
 						</p>
 					</section>
-					
 				</div>
 				
 
@@ -45,7 +125,7 @@
 						Networking is a lot like nutrition and fitness: we know what to do, the hard part is making it a top priority.	
 					</p>
 					<ul class="actions special">
-						<li><a href="" class="button">Next chapter</a></li>
+						<li><a href="DynamicRouting.html" class="button">Next chapter</a></li>
 					</ul>
 				</footer>
 
@@ -58,10 +138,6 @@
 					<header class="major last">
 						<h2>Questions or comments?</h2>
 					</header>
-
-					<p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor
-					orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus.</p>
-
 					<form method="post" action="#">
 						<div class="row">
 							<div class="col-6 col-12-mobilep">
