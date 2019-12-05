@@ -999,6 +999,25 @@ Router (config-if) # exit
 								<img src="images/configuracion de rutas estaticas en el R2-1.PNG" alt=""> <br>
 								<img src="images/configuracion de rutas estaticas en el R2-2.PNG" alt="">
 							</p>
+							<h2>Ejemplos de rutas estáticas IPv6</h2>
+							<p>
+								Como en IPv4, IPv6 admite rutas estáticas y estáticas predeterminadas. Estas se usan y se configuran como las rutas estáticas IPv4.
+								Para configurar una ruta IPv6 estática predeterminada, utilice el comando de configuración global ipv6 route ::/0 {dirección-ipv6 | tipo-interfaz número-interfaz}. <br>
+								En la figura 1, se muestra la configuración de una ruta estática predeterminada en el R1 a la interfaz Serial 0/0/0. <br>
+								<img src="images/introduccion y verificacion de una ruta estatica predeterminada IPv6.PNG" alt="">
+								Observe que, en el resultado que se muestra en la figura 2, la configuración de la ruta estática predeterminada generó una entrada “S” en la tabla de routing. La “S” significa que el origen de la ruta es una ruta estática. A diferencia de la ruta estática IPv4, 
+								no figura ningún asterisco (*) ni se identifica ningún gateway de último recurso de forma explícita. <br>
+								<img src="images/introduccion y verificacion de una ruta estatica predeterminada IPv6-2.PNG" alt="">
+								Como en IPv4, las rutas estáticas son rutas configuradas explícitamente para llegar a una red remota específica. Las rutas estáticas IPv6 se configuran con el comando de configuración global ipv6 route ipv6-prefix/prefix-length {ipv6-address|tipo-interfaz número-interfaz}. <br> 
+								<img src="images/introduccion y verificacion de rutas estaticas ipv6.PNG" alt="">
+								En el ejemplo de la figura 3, se muestra la configuración de dos rutas estáticas del R2 para llegar a las dos LAN en el R1. La ruta a la LAN 2001:0DB8:ACAD:2::/64 se configuró con una interfaz de salida, mientras que la ruta a la LAN 2001:0DB8:ACAD:1::/64 se configuró con la 
+								dirección IPv6 de siguiente salto. La dirección IPv6 de siguiente salto puede ser una dirección de unidifusión global o link-local de IPv6. <br>
+								<img src="images/introduccion y verificacion de rutas estaticas ipv6-4.PNG" alt="">
+								En la figura 4, se muestra la tabla de routing con las nuevas rutas estáticas instaladas. <br>
+								<img src="images/introduccion y verificacion des rutas estaticas IPv6.PNG" alt="">
+								En la figura 5, se confirma la conectividad de red remota del R1 a la LAN 2001:0DB8:ACAD:4::/64 en el R2. <br>
+								<img src="images/verifcacion de conectividad de red remota.PNG " alt="">
+							</p>
 					</section>
 				</div>
 				<footer class="major container medium">
