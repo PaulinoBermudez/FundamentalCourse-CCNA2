@@ -212,6 +212,34 @@
 							La Distancia distancia se utiliza para crear una ruta estática flotante al establecer una distancia administrativa mayor que la de una ruta descubierta de forma dinámica. <br>
 							<img src="images/sintaxis del comando ip route.PNG" alt="">
 						</p>
+						<h2>Opciones de siguiente salto</h2>
+						<p>
+							En este ejemplo, las figuras 1 a 3 muestran las tablas de routing de los routers R1, R2 y R3. <br>
+							<div>
+								<img src="images/verificacion de la tabla de routing del R1.PNG" alt="">
+								<img src="images/verificacion de la tabla de routing del R2.PNG" alt="">
+								<img src="images/verificacion de la tabla de routing del R3.PNG" alt="">
+							</div>
+							Observe que cada router tiene entradas solo para redes conectadas directamente y sus direcciones locales asociadas. Ninguno de los routers tiene 
+							conocimiento de las redes que están fuera de las interfaces conectadas directamente. <br>
+							Por ejemplo, el R1 no tiene conocimiento de las redes:
+							<ul>
+								<li>172.16.1.0/24: LAN en el R2</li>
+								<li>192.168.1.0/24: red serial entre el R2 y el R3</li>
+								<li>192.168.2.0/24: LAN en el R3</li>
+							</ul>
+							En la figura 4, se muestra un ping correcto del R1 al R2. En la figura 5, se muestra un ping incorrecto a la LAN del R3. 
+							Esto se debe a que el R1 no tiene una entrada en su tabla de routing para la red LAN del R3. <br>
+							<img src="images/verificacion de la conectividad del R1 al R2.PNG" alt=""> <br>
+							El siguiente salto se puede identificar mediante una dirección IP, una interfaz de salida, o ambas. El modo en que se especifica 
+							el destino genera uno de los siguientes tres tipos de ruta:
+							<ul>
+								<li>Ruta del siguiente salto: solo se especifica la dirección IP del siguiente salto</li>
+								<li>Ruta estática conectada directamente: solo se especifica la interfaz de salida del router</li>
+								<li>Ruta estática especificada completamente: se especifican la dirección IP del siguiente salto y la interfaz de salida</li>
+							</ul>
+							<img src="images/verificacion de la conectividad del R1 al R3.PNG" alt="">
+						</p>
 					</section>
 				</div>
 				
