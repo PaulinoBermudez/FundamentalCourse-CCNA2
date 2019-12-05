@@ -274,9 +274,34 @@
 								<img src="images/configuracion de rutas estaticas de siguiente salto en el R3-1.PNG" alt=""> <br>
 								<img src="images/configuracion de rutas estaticas de siguiente salto en el R3-2.PNG" alt=""> <br> <p>Imagen 4</p>
 							</div>
-
 							Utilice el verificador de sintaxis en las figuras 3 y 4 para configurar y verificar las rutas estáticas del siguiente salto en el R2 y el R3.
-							Estas figuras se basan en el diagrama de laboratorio estándar. R1 con una LAN se conecta a R2 con una LAN que se conecta a R3 con una LAN. La figura 1 muestra la configuración de las dos LAN a las que el router 1 no está conectado, la LAN del router 2 y la LAN del router 3, además de la WAN entre el router 2 y el router 3. Las rutas estáticas se configuraron usando la dirección del próximo salto. La figura 2 muestra el proceso de búsqueda recursiva para que el router 1 se comunique con la LAN en el router 3. Este proceso se requiere siempre que se ingrese una ruta estática usando un próximo salto en lugar de una interfaz de salida. La figura tres es una actividad interactiva que permite que el estudiante configure una ruta estática en el router dos para llegar a la LAN del router tres utilizando la dirección de siguiente salto. La figura 4 es una actividad interactiva que permite que el estudiante configure rutas estáticas en el router 3 a las redes del otro lado del router 2.
+						</p>
+						<h2>Configuración de una ruta estática conectada directamente</h2>
+						<p>
+							Al configurar una ruta estática, otra opción es utilizar la interfaz de salida para especificar la dirección del siguiente salto. <br>
+							En la figura 1, se configuran tres rutas estáticas conectadas directamente en el R1 mediante la interfaz de salida. La tabla de routing para el R1 en la figura 2 muestra 
+							que cuando un paquete está destinado a la red 192.168.2.0/24, el R1 busca una coincidencia en la tabla de routing y encuentra que puede reenviar el paquete desde su interfaz 
+							serial 0/0/0. No se necesita ninguna otra búsqueda. <br>
+							<img src="images/configuracion de rutas estaticas conectadas directamente en el R1.PNG" alt=""> <br> <i>Imagen 1</i> <br>
+							<img src="images/verificacion de la tabla de routing del R1 conectada directamente -1.PNG" alt=""> <br>
+							<img src="images/verificacion de la tabla de routing del R1 conectada directamente -2.PNG" alt=""> <br> <i>Imagen 2</i> <br>
+							Observe que la tabla de routing se ve diferente para la ruta configurada con una interfaz de salida que para la ruta configurada con una entrada recursiva. <br>
+							La configuración de una ruta estática conectada directamente con una interfaz de salida permite que la tabla de routing resuelva esta interfaz en una única búsqueda, no en dos. 
+							Aunque la entrada de la tabla de routing indica “conectado directamente”, la distancia administrativa de la ruta estática sigue siendo 1. Solo una interfaz conectada directamente 
+							puede tener una distancia administrativa de 0. <br>
+							Nota: para las interfaces punto a punto, puede utilizar rutas estáticas que señalan a la interfaz de salida o a la dirección del siguiente salto. Para interfaces multipunto o de 
+							difusión, es más conveniente utilizar rutas estáticas que señalen a una dirección del siguiente salto. <br>
+							Utilice el verificador de sintaxis en las figuras 3 y 4 para configurar y verificar las rutas estáticas conectadas directamente en el R2 y el R3. <br>
+							<img src="images/configuracion de rutas estaticas conectadas directamente en el R2.PNG" alt=""> <br>
+							<img src="images/configuracion de rutas estaticas conectadas directamente en el R2-2.PNG" alt=""> <br> <i>Imagen 3</i> <br>
+							<img src="images/configuracion de rutas estaticas conectadas directamente en el R3-1.PNG" alt=""> <br>
+							<img src="images/configuracion de rutas estaticas conectadas directamente en el R3-2.PNG" alt=""> <br> <i>Imagen 4</i> <br>
+							<strong>Nota</strong> : CEF (Cisco Express Forwarding) es el comportamiento predeterminado en la mayoría de las plataformas que ejecutan IOS 12.0 o posterior. CEF proporciona búsquedas optimizadas 
+							para el reenvío de paquetes eficaz mediante dos estructuras de datos principales almacenadas en el plano de datos: una base de información de reenvío (FIB), que es una copia de la 
+							tabla de routing y la tabla de adyacencia que incluye información de direccionamiento de la capa 2. La información combinada en estas dos tablas trabaja en conjunto de manera que 
+							no sea necesario realizar una búsqueda recursiva para encontrar direcciones IP del siguiente salto. Es decir, una ruta estática que utiliza una IP del siguiente salto solo requiere 
+							una única búsqueda cuando CEF está habilitado en el router. Aunque son comunes las rutas estáticas que utilizan solo una interfaz de salida en redes punto a punto, el uso del 
+							mecanismo de reenvío CEF predeterminado hace que esta práctica sea innecesaria. CEF se analizará en mayor detalle más adelante en el curso. <br>
 						</p>
 					</section>
 				</div>
