@@ -240,6 +240,44 @@
 							</ul>
 							<img src="images/verificacion de la conectividad del R1 al R3.PNG" alt="">
 						</p>
+						<h2>Configuración de una ruta estática de siguiente salto</h2>
+						<p>
+							En una ruta estática de siguiente salto, solo se especifica la dirección IP del siguiente salto. La interfaz de salida se deriva del próximo salto. 
+							Por ejemplo, en la figura 1, se configuran tres rutas estáticas de siguiente salto en el R1 con la dirección IP del siguiente salto, el R2. <br>
+							Antes de que un router reenvíe un paquete, el proceso de la tabla de routing debe determinar qué interfaz de salida utilizará para reenviar el paquete. 
+							A esto se lo conoce como resolución de rutas. <br>
+							La Figura 2 detalla el proceso básico de envío de paquetes en la tabla de routing para R1. Cuando un paquete está destinado a la red 192.168.2.0/24, el R1:
+							<ul>
+								<li>
+									1. Busca una coincidencia en la tabla de routing y encuentra que debe reenviar paquetes a la dirección IPv4 172.16.2.2 del siguiente salto, 
+									tal como lo indica la etiqueta 1 en la ilustración. Todas las rutas que hacen referencia solo a la dirección IPv4 del siguiente salto y que no hacen 
+									referencia a una interfaz de salida deben resolver la dirección IPv4 del siguiente salto con otra ruta de la tabla de routing que tenga una interfaz de salida.
+								</li>
+								<li>
+									2. En esta instancia, el R1 debe determinar cómo alcanzar la dirección 172.16.2.2. Por lo tanto, busca por segunda vez si existe una coincidencia para 172.16.2.2. 
+									En este caso, la dirección IPv4 hace coincidir la ruta de la red conectada directamente 172.16.2.0/24 con la interfaz de salida Serial 0/0/0, tal como lo indica la 
+									etiqueta 2 en la ilustración. Esta búsqueda le comunica al proceso de la tabla de routing que este paquete se reenvía fuera de esa interfaz.
+								</li>
+							</ul>
+							En realidad, se requieren dos procesos de búsqueda en la tabla de routing para reenviar cualquier paquete a la red 192.168.2.0/24. Cuando el router realiza varias búsquedas 
+							en la tabla de routing antes de reenviar un paquete, lleva a cabo un proceso que se conoce como “búsqueda recursiva”. Debido a que las búsquedas recursivas consumen recursos 
+							del router, deben evitarse siempre que sea posible. <br>
+							Una ruta estática recursiva es válida (es decir, es candidata para agregarse a la tabla de routing) solo cuando el siguiente salto especificado resuelve a una interfaz de 
+							salida válida, ya sea de forma directa o indirecta. Si la interfaz de salida está “down” (inactiva) o “administratively down” (administrativamente inactiva), la ruta estática 
+							no se instalará en la tabla de routing. <br>
+							<div>
+								<img src="images/configuracion de rutas estaticas de siguiente salto en el R1.PNG" alt=""> <br> <p>Imagen 1</p> <br>
+								<img src="images/verificacion de la tabla de routing del R1-1.PNG" alt=""> <br>
+								<img src="images/verificacion de la tabla de routing del R1-2.PNG" alt=""> <br> <p>Imagen 2</p> <br>
+								<img src="images/configuracion de rutas estaticas de siguiente salto en el R2-1.PNG" alt=""> <br>
+								<img src="images/configuracion de rutas estaticas de siguiente salto en el R2-2.PNG" alt=""> <br> <p>Imagen 3</p> <br>
+								<img src="images/configuracion de rutas estaticas de siguiente salto en el R3-1.PNG" alt=""> <br>
+								<img src="images/configuracion de rutas estaticas de siguiente salto en el R3-2.PNG" alt=""> <br> <p>Imagen 4</p>
+							</div>
+
+							Utilice el verificador de sintaxis en las figuras 3 y 4 para configurar y verificar las rutas estáticas del siguiente salto en el R2 y el R3.
+							Estas figuras se basan en el diagrama de laboratorio estándar. R1 con una LAN se conecta a R2 con una LAN que se conecta a R3 con una LAN. La figura 1 muestra la configuración de las dos LAN a las que el router 1 no está conectado, la LAN del router 2 y la LAN del router 3, además de la WAN entre el router 2 y el router 3. Las rutas estáticas se configuraron usando la dirección del próximo salto. La figura 2 muestra el proceso de búsqueda recursiva para que el router 1 se comunique con la LAN en el router 3. Este proceso se requiere siempre que se ingrese una ruta estática usando un próximo salto en lugar de una interfaz de salida. La figura tres es una actividad interactiva que permite que el estudiante configure una ruta estática en el router dos para llegar a la LAN del router tres utilizando la dirección de siguiente salto. La figura 4 es una actividad interactiva que permite que el estudiante configure rutas estáticas en el router 3 a las redes del otro lado del router 2.
+						</p>
 					</section>
 				</div>
 				
