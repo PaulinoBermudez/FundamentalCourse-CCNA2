@@ -1009,7 +1009,7 @@ Router (config-if) # exit
 								no figura ningún asterisco (*) ni se identifica ningún gateway de último recurso de forma explícita. <br>
 								<img src="images/introduccion y verificacion de una ruta estatica predeterminada IPv6-2.PNG" alt="">
 								Como en IPv4, las rutas estáticas son rutas configuradas explícitamente para llegar a una red remota específica. Las rutas estáticas IPv6 se configuran con el comando de configuración global ipv6 route ipv6-prefix/prefix-length {ipv6-address|tipo-interfaz número-interfaz}. <br> 
-								<img src="images/introduccion y verificacion de rutas estaticas ipv6.PNG" alt="">
+								<img src="images/introduccion y verificacion de rutas estaticas ipv6-3.PNG" alt="">
 								En el ejemplo de la figura 3, se muestra la configuración de dos rutas estáticas del R2 para llegar a las dos LAN en el R1. La ruta a la LAN 2001:0DB8:ACAD:2::/64 se configuró con una interfaz de salida, mientras que la ruta a la LAN 2001:0DB8:ACAD:1::/64 se configuró con la 
 								dirección IPv6 de siguiente salto. La dirección IPv6 de siguiente salto puede ser una dirección de unidifusión global o link-local de IPv6. <br>
 								<img src="images/introduccion y verificacion de rutas estaticas ipv6-4.PNG" alt="">
@@ -1018,6 +1018,57 @@ Router (config-if) # exit
 								En la figura 5, se confirma la conectividad de red remota del R1 a la LAN 2001:0DB8:ACAD:4::/64 en el R2. <br>
 								<img src="images/verifcacion de conectividad de red remota.PNG " alt="">
 							</p>
+							<h2>Enrutamiento dinámico</h2>
+							<p>
+								Los routers usan protocolos de enrutamiento dinámico para compartir información sobre el estado y la posibilidad de conexión de redes remotas. Los protocolos de routing dinámico realizan diversas actividades, como la detección de redes y el mantenimiento de las tablas de routing.
+								El descubrimiento de redes es la capacidad de un protocolo de enrutamiento de compartir información sobre las redes que conoce con otros routers que también están usando el mismo protocolo de enrutamiento. En lugar de depender de las rutas estáticas configuradas manualmente hacia 
+								redes remotas en cada router, los protocolos de routing dinámico permiten que los routers descubran estas redes de forma automática a través de otros routers. Estas redes y la mejor ruta hacia cada una se agregan a la tabla de routing del router y se identifican como redes 
+								descubiertas por un protocolo de routing dinámico específico. <br>
+								Durante la detección de redes, los routers intercambian rutas y actualizan sus tablas de routing. Los routers convergen una vez que finalizan el intercambio y actualizan sus tablas de routing. Luego, los routers conservan las redes en sus tablas de routing. <br>
+								En la ilustración, se proporciona una situación simple sobre cómo dos routers vecinos intercambiarían inicialmente la información de routing. En este intercambio simplificado, el R1 se presenta y detalla las redes que puede alcanzar. El R2 responde con su lista de redes. <br>
+								<img src="images/situacion de routing dinamico.PNG" alt="">
+							</p>
+							<h2>Protocolo de routing IPv4</h2>
+							<p>
+								Un router que ejecuta un protocolo de routing dinámico no solo determina la mejor ruta hacia una red, sino que también determina una nueva mejor ruta si la ruta inicial se vuelve inutilizable (o si cambia la topología). Por estos motivos, los protocolos de enrutamiento dinámico 
+								representan una ventaja sobre las rutas estáticas. Los routers que usan protocolos de enrutamiento dinámico comparten automáticamente la información de enrutamiento con otros routers y compensan cualquier cambio de topología sin que sea necesaria la participación del administrador de la red. <br>
+								Los routers Cisco admiten diversos protocolos de routing dinámico IPv4, incluidos los siguientes:
+								<ul>
+									<li><strong> EIGRP:</strong> protocolo de routing de gateway interior mejorado </li>
+
+									<li><strong> OSPF: </strong>abrir primero la ruta más corta </li>
+
+									<li><strong> IS-IS:</strong> sistema intermedio a sistema intermedio </li>
+
+									<li><strong> RIP: p</strong>rotocolo de información de routing </li>
+								</ul>
+								Para determinar qué protocolos de routing admite IOS, use el comando router ? en el modo de configuración global, como se muestra en la ilustración. <br>
+								<img src="images/protocolos de routing admitidos.PNG" alt="">
+							</p>
+							<h2>Ejemplo de routing dinámico IPv4</h2>
+							<p>
+								En este ejemplo de routing dinámico, suponga que el R1 y el R2 se configuraron para admitir el protocolo de routing dinámico EIGRP. Los routers también anuncian las redes conectadas directamente. El R2 anuncia que es el gateway predeterminado a otras redes. <br>
+								En el resultado de la ilustración, se muestra la tabla de routing del R1 después del intercambio de actualizaciones y la convergencia de los routers. Además de la interfaz conectada y la interfaz link-local, hay tres entradas “D” en la tabla de routing. <br>
+								<ul>
+									<li> La entrada que comienza con “D*EX” identifica que el origen de esta entrada fue EIGRP (“D"). La ruta es candidata a ser una ruta predeterminada (“*”) y es una ruta externa (“*EX”) reenviada por EIGRP.</li>
+									<li> Las otras dos entradas “D” son rutas instaladas en la tabla de routing según la actualización del R2 que anuncia sus LAN.</li>
+								</ul>
+								<img src="images/verificacion de rutas dinamicas.PNG" alt="">
+							</p>
+							<h2>Protocolo de routing IPv6</h2>
+							<p>
+								Como se muestra en la figura, los dispositivos ISR admiten protocolos de routing dinámico IPv6, incluidos los siguientes:
+								<ul>
+									<li> RIPng (RIP de última generación) </li>
+									<li> OSPFv3 </li>
+									<li> EIGRP para IPv6 </li>
+								</ul>
+								La compatibilidad con los protocolos de routing dinámico IPv6 depende del hardware y la versión del IOS. La mayoría de las modificaciones en los protocolos de routing se hacen para admitir direcciones IPv6 más largas y estructuras de encabezado diferentes. <br>
+								Para habilitar que los routers IPv6 reenvíen tráfico, se debe utilizar el comando de configuración global ipv6 unicast-routing. <br>
+								<img src="images/protocolos de routing IPv6 admitidos.PNG" alt="">
+							</p>
+							<h2>Ejemplos de routing dinámico en IPv6</h2>
+							1.3.4.5
 					</section>
 				</div>
 				<footer class="major container medium">
