@@ -1068,14 +1068,42 @@ Router (config-if) # exit
 								<img src="images/protocolos de routing IPv6 admitidos.PNG" alt="">
 							</p>
 							<h2>Ejemplos de routing dinámico en IPv6</h2>
-							1.3.4.5
+							<p>
+								Los routers R1 y R2 se configuraron con el protocolo de routing dinámico EIGRP para IPv6. (Este es el equivalente a EIGRP para IPv4 en IPv6). <br>
+								Para ver la tabla de routing en el R1, introduzca el comando show ipv6 route, como se muestra en la ilustración. En el resultado de la ilustración, se muestra la tabla de routing del R1 después del intercambio de actualizaciones y la convergencia de los routers. 
+								Además de las rutas conectadas y locales, hay dos entradas “D” (rutas EIGRP) en la tabla de routing. <br>
+								<img src="images/verificacion de rutas dinamicas-ejemplo IPv6.PNG" alt="">
+							</p>
+							<h2>Actividad: ¡Nos vendría bien un mapa!</h2>
+							<p>
+								<a href="Documents/1.4.1.1 We Really Could Use A Map Instructions.pdf" target="_blank" rel="noopener noreferrer">Actividad de clase: !nos vendría bine un mapa!(Instrucciones)</a>
+							</p>
+							<hr>
+							<h3> Resumen: Cap. 1 - Conceptos de routing</h3>
+							<hr>
+							<p>								
+								Existen muchas características clave relacionadas con las estructuras y el rendimiento a las cuales nos referimos cuando hablamos de redes: topología, velocidad, costo, seguridad, disponibilidad, escalabilidad y confiabilidad.
+								Los routers y switches Cisco tienen muchas similitudes. Admiten sistemas operativos modales y estructuras de comandos similares, así como muchos de los mismos comandos. Una característica que distingue a los switches de los routers es el tipo de interfaces 
+								que admite cada uno. Una vez que se configuró una interfaz en ambos dispositivos, se deben utilizar los comandos show adecuados para verificar que la interfaz funcione. <br>
+								El objetivo principal de un router es conectar múltiples redes y reenviar paquetes desde una red a la siguiente. Esto significa que un router normalmente tiene múltiples interfaces. Cada interfaz es un miembro o host en una red IP diferente. <br>
+								El IOS de Cisco utiliza lo que se conoce como “distancia administrativa” (AD) para determinar la ruta que se debe instalar en la tabla de routing de IP. La tabla de routing es una lista de redes que conoce el router. La tabla de enrutamiento incluye direcciones de 
+								red para sus propias interfaces que son las redes conectadas directamente, además de direcciones de red para redes remotas. Una red remota es una red a la que se puede llegar únicamente reenviando el paquete a otro router. <br>
+								Las redes remotas se agregan a la tabla de routing de dos maneras: por el administrador de red que configura manualmente las rutas estáticas o implementando un protocolo de routing dinámico. Las rutas estáticas no tienen tanta sobrecarga como los protocolos de enrutamiento 
+								dinámico; sin embargo, las rutas estáticas requieren más mantenimiento si la topología es inestable o está en constante cambio. <br>
+								Los protocolos de enrutamiento dinámico se ajustan automáticamente a los cambios sin intervención alguna del administrador de la red. Los protocolos de enrutamiento dinámico requieren más procesamiento de la CPU y además usan una cierta cantidad de capacidad de enlace para 
+								mensajes y actualizaciones de enrutamiento. En muchos casos, una tabla de enrutamiento tendrá tanto rutas estáticas como dinámicas. <br>
+								Los routers toman su decisión principal de reenvío en la Capa 3, la capa de Red. Sin embargo, las interfaces del router participan en las capas 1, 2 y 3. Los paquetes IP de capa 3 se encapsulan en una trama de enlace de datos de capa 2 y se codifican en bits en la capa 1. 
+								Las interfaces del router participan en los procesos de capa 2 asociados a la encapsulación. Por ejemplo, una interfaz Ethernet en un router participa en el proceso ARP como otros hosts en esa LAN. <br>
+								La tabla de enrutamiento IP de Cisco no es una base de datos plana. La tabla de enrutamiento, en realidad, es una estructura jerárquica que se usa para acelerar el proceso de búsqueda cuando se ubican rutas y se reenvían paquetes. <br>
+								Los componentes de la tabla de routing IPv6 son muy similares a los de la tabla de routing IPv4. Por ejemplo, se completa con las interfaces conectadas directamente, con las rutas estáticas y con las rutas descubiertas de forma dinámica. 
+							</p>
 					</section>
 				</div>
 				<footer class="major container medium">
 					<h4>Quote about Networking...</h4>
 					<p>Networking is a lot like nutrition and fitness: we know what to do, the hard part is making it a top priority.</p>
 					<ul class="actions special">
-						<li><a href="routingConcepts.html" class="button">Next Chapter</a></li>
+						<li><a href="StaticRouting.html" class="button">Next Chapter</a></li>
 					</ul>
 				</footer>
 
