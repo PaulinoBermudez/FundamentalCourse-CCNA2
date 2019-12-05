@@ -952,7 +952,53 @@ Router (config-if) # exit
 							<br>
 							<a href="Documents/1.3.2.5 Packet Tracer - Investigating Directly Connected Routes.pka" target="_blank" rel="noopener noreferrer">PT: Investigación de rutas conectadas directamente (PKA)</a>
 						</p>
-						<h2></h2>
+						<h2>Routing estáticas</h2>
+						<p>
+							Después de configurar las interfaces conectadas directamente y de agregarlas a la tabla de routing, se puede implementar el routing estático o dinámico. <br>
+							Las rutas estñaticas se configuran de forma manual. Estas definen una ruta explicita entre dos dispositivos de red. A diferencia de los protocolos de routing dinámico, las rutas estáticas no se actualizan automáticamente y 
+							se deben recongigurar de forma manual si se modifica la topología de la red. Los beneficios de utilizar rutas estáticas incluyen la mejora de la seguridad y la eficacia de los recursos. Los beneficios de utilizar rutas estáticas incluyen 
+							la mejora de la seguridad y la eficacia de los recursos. Las rutas estáticas consumen menos ancho de banda  que los protocolos  de routing dinámico,  y no se usa ningun ciclo de CPU para calcular y comunicar las rutas. La principal desventaja
+							de usar rutas estáticas es que no se vuelven a configurar de manera automática si se modifica la topología de la red. <br>
+							Existen dos tipos de rutas estáticas comunes en la teabla de routing: 
+							<ul>
+								<li>Ruta estática a una red específica</li>
+								<li>Ruta estática predeterminado</li>
+							</ul>
+							Las rutas estáticas se pueden configurar para llegar a una red remota específica. Las rutas estáticas IPv4 se configuran con el siguiente comando:  <br>
+							<code>
+								<i>
+									Router (config) # <strong>ip route</strong> network mask { next-hop-ip | exit-intf} 
+								</i>
+							</code> <br>
+								Las rutas estáticas se identifican en la tavla de routing con el código "S"	. <br>
+								Las rutas estáticas predeterminadas son similares a un gateway predeterminado en un host. Las rutas estáticas predeterminadas especifican  el punto de salida que se debe utilizar cuando la tabla de routing no contiene  una ruta 
+								para la red de destino. Las rutas estáticas predeterminadas son útiles cuando un router tiene solo un punto de salida p¡a otro router, por ejemplo, cuando el router se conecta a un router central o a un proveedor de servicios. <br>
+								Para configurar una ruta estática predeterminada IPv4, use el comando siguiente: <br>
+								<code>
+									<i>
+										Router (Config) # <b>ip route 0.0.0.0 0.0.0.0</b> {exit-intf | next-hop-ip}
+									</i>
+								</code>	<br>
+								En la ilustración, se proporciona una situación simple sobre cómo se pueden aplicar las rutas predeterminadas y estáticas. <br>
+								<img src="images/situacion de rutas estaticas y predeterminadas.PNG" alt="">
+							</p>
+							<h2>Ejemplos de rutas estáticas</h2>
+							<p>
+								En la figura 1, se muestra la configuración de una ruta estática predeterminada IPv4 en el R1 a la interfaz Serial 0/0/0. Observe que la configuración de la  ruta genero una entrada 'S*' en la tabla de routing. La 'S' significa que el origen de la ruta es una ruta estática, 
+								mientras que el asterisco (*) indica que esta ruta es una posible candidata para ser la ruta predeterminada. De hecho, se eligió como ruta predeterminada, como se observa en la línea que dice 'Gateway of Last Resort is 0.0.0.0 to network 0.0.0.0' (El gateway de último recurso es 
+								0.0.0.0 para la red 0.0.0.0). <br>
+								<img src="images/introduccion y verificacion de una ruta estatica predeterminada.PNG" alt=""> <br>
+								En la figura 2, se muestra la configuración de dos rutas estáticas del R2 para llegar a los dos LAN en el R1. La ruta a 192.168.10.0/24 se configuró con la interfaz de salida, mientras que la ruta a 192.168.11.0/24 se configuró  con la dirección  IPv4 de siguiente salto. 
+								Si bien ambas son aceptables, existen algunas diferencias con respecto a la forma en que estas rutas estáticas estaban dirigidas a redes esoecíficas, el resultado indica que no se estableció el gateway de último recurso. <br>
+								<img src="images/introduccion y verificacion de una ruta estatica.PNG" alt="">
+								<strong>Nota:</strong> las rutas estáticas y las estáticas predeterminadas se explican en detalle en el capítulo siguiente. <br>
+								Utilice el verificador de sintaxis de la figura 3 para configurar una ruta estática predeterminada en el router R1 que vaya al R2. <br>
+								<img src="images/configuracion de una ruta estatica predeterminada en el R1-1.PNG" alt=""> <br>
+								<img src="images/configuracion de una ruta estatica predeterminada en el R1-2.PNG" alt=""> <br>
+								Utilice el verificador de sintaxis de la figura 4 para configurar rutas estáticas en el router R2 para llegar a las LAN del R1. <br>
+								<img src="images/configuracion de rutas estaticas en el R2-1.PNG" alt=""> <br>
+								<img src="images/configuracion de rutas estaticas en el R2-2.PNG" alt="">
+							</p>
 					</section>
 				</div>
 				<footer class="major container medium">
